@@ -121,17 +121,6 @@ const MenuPage = () => {
           <p className="hero-subtitle">
             Discover authentic Asian flavors prepared with premium ingredients and traditional recipes.
           </p>
-
-          <div style={{ marginTop: '1.75rem' }}>
-            <button
-              onClick={() => setIsReservationOpen(true)}
-              className="btn btn-teal"
-              style={{ padding: '0.95rem 2.2rem' }}
-            >
-              <PhoneCall size={18} />
-              <span>Reserve a Table</span>
-            </button>
-          </div>
         </div>
       </section>
 
