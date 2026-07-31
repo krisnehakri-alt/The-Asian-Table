@@ -2,8 +2,9 @@
   "name": "the-asian-table",
   "version": "1.0.0",
   "private": true,
-  "description": "The Asian Table - Luxury Asian Cuisine Restaurant Website (Milestone 1)",
+  "description": "The Asian Table - Luxury Asian Cuisine Restaurant Website",
   "scripts": {
+    "build": "npm --prefix client run build",
     "dev:client": "npm --prefix client run dev",
     "build:client": "npm --prefix client run build",
     "preview:client": "npm --prefix client run preview"
