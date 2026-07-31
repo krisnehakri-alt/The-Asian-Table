@@ -80,58 +80,49 @@ export const featuredHighlightsData = [
 
 export const signatureDishesData = [
   {
-    id: 'peking-duck',
-    name: 'Imperial Peking Duck',
-    category: 'Chef Specials',
-    price: '$68.00',
-    tags: ["Chef's Signature", 'Sharing'],
-    description: 'Crispy honey-glazed skin served with handmade scallion pancakes, cucumber strips, and 25-year aged plum hoisin.',
-    image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&q=80&w=800'
+    id: 'veg-manchurian',
+    name: 'Veg Manchurian',
+    category: 'Special Asian',
+    price: '$28.00',
+    tags: ['Special Asian', 'Premium Dish'],
+    description: 'Crispy vegetable dumplings tossed in a rich, tangy garlic soy and spring onion glaze.',
+    image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&q=80&w=800'
   },
   {
-    id: 'truffle-xiaolongbao',
-    name: 'Black Truffle Xiao Long Bao',
-    category: 'Dim Sum',
-    price: '$32.00',
-    tags: ['Handcrafted', 'Popular'],
-    description: 'Steamed soup dumplings filled with Kurobuta pork loin and infused with aromatic Italian black truffle broth.',
-    image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&q=80&w=800'
+    id: 'chicken-manchurian',
+    name: 'Chicken Manchurian',
+    category: 'Special Asian',
+    price: '$34.00',
+    tags: ['Special Asian', 'Chef Signature'],
+    description: 'Tender chicken bites wok-tossed in dark soy sauce, fresh ginger, chili peppers, and coriander.',
+    image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&q=80&w=800'
   },
   {
-    id: 'wagyu-robata',
-    name: 'A5 Miyazaki Wagyu Skewers',
-    category: 'Robata & Grill',
-    price: '$54.00',
-    tags: ['A5 Certified', 'Gluten Free'],
-    description: 'Charcoal-grilled over Japanese Binchotan with tare glaze, smoked sea salt, and fresh wasabi root.',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800'
+    id: 'asian-noodles',
+    name: 'Hakka Chilli Garlic Noodles',
+    category: 'Asian Noodles',
+    price: '$24.00',
+    tags: ['Wok Tossed', 'Spicy'],
+    description: 'Artisanal wheat noodles wok-tossed with chili oil, charred garlic, bell peppers, and scallions.',
+    image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=800'
   },
   {
-    id: 'singapore-lobster',
-    name: 'Wok-Tossed Chili Lobster',
-    category: 'Wok Mastery',
-    price: '$72.00',
-    tags: ['Wild Caught', 'Spicy'],
-    description: 'Whole Canadian lobster seared with fragrant shallots, bird’s eye chili, and tangy tomato egg gravy served with golden mantou.',
-    image: 'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&q=80&w=800'
-  },
-  {
-    id: 'matcha-souffle',
-    name: 'Artisanal Uji Matcha Soufflé',
-    category: 'Desserts & Tea',
+    id: 'asian-rice',
+    name: 'Yangzhou Special Fried Rice',
+    category: 'Asian Rice',
     price: '$22.00',
-    tags: ['Organic', 'Signature'],
-    description: 'Warm ceremonial grade Uji matcha soufflé served with black sesame gelato and gold leaf garnish.',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800'
+    tags: ['Aromatic', 'Heritage Recipe'],
+    description: 'Fragrant Jasmine rice fried with farm-fresh vegetables, sesame oil, and light soy sauce.',
+    image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&q=80&w=800'
   },
   {
-    id: 'hamachi-crudo',
-    name: 'Yellowtail Hamachi Crudo',
-    category: 'Chef Specials',
-    price: '$29.00',
-    tags: ['Fresh Sashimi', 'Raw'],
-    description: 'Sliced Pacific yellowtail with yuzu ponzu sauce, pickled jalapeño coins, and micro cilantro.',
-    image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&q=80&w=800'
+    id: 'dimsum-momos',
+    name: 'Signature Steamed Dimsum & Momos',
+    category: 'Dimsum & Momos',
+    price: '$26.00',
+    tags: ['Handcrafted', 'Steamed'],
+    description: 'Handcrafted crystal dumplings served with spicy chili garlic chutney and scallion oil.',
+    image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&q=80&w=800'
   }
 ];
 

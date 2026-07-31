@@ -37,7 +37,7 @@ const HomePage = () => {
   const [isReservationOpen, setIsReservationOpen] = useState(false);
 
   // Categories list
-  const categories = ['All', 'Chef Specials', 'Dim Sum', 'Robata & Grill', 'Wok Mastery', 'Desserts & Tea'];
+  const categories = ['All', 'Asian Noodles', 'Asian Rice', 'Dimsum & Momos', 'Special Asian'];
 
   const filteredDishes = selectedCategory === 'All'
     ? signatureDishesData
