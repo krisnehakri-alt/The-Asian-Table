@@ -1,39 +1,29 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {
   Sparkles,
-  Instagram,
   X,
   ChevronLeft,
   ChevronRight,
-  Maximize2,
-  Heart,
-  MessageCircle,
-  Camera,
-  PhoneCall,
-  Calendar
+  Maximize2
 } from 'lucide-react';
 import {
   galleryCategoriesData,
-  galleryImagesData,
-  instagramPostsData
+  galleryImagesData
 } from '../data/galleryData';
 import { images } from '../data/restaurantData';
-import ReservationModal from '../components/ReservationModal';
 
 const GalleryPage = () => {
-  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState('all');
-  const [lightboxIndex, setLightboxIndex] = useState(null); // null if closed, or integer index
-  const [isReservationOpen, setIsReservationOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
-  // Filter gallery images based on category tab
+  // Filter gallery images based on active category
   const filteredGallery = useMemo(() => {
     if (activeCategory === 'all') return galleryImagesData;
     return galleryImagesData.filter((item) => item.category === activeCategory);
   }, [activeCategory]);
 
-  // Lightbox Keyboard Navigation (Arrow Left, Arrow Right, Escape)
+  // Lightbox Keyboard Navigation (Escape, ArrowLeft, ArrowRight)
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (lightboxIndex === null) return;
@@ -53,179 +43,177 @@ const GalleryPage = () => {
   const activeLightboxImage = lightboxIndex !== null ? filteredGallery[lightboxIndex] : null;
 
   return (
-    <div style={{ overflowX: 'hidden', backgroundColor: 'var(--bg-cream)' }}>
-      {/* Reservation Modal Handler */}
-      <ReservationModal isOpen={isReservationOpen} onClose={() => setIsReservationOpen(false)} />
-
-      {/* 1. HERO BANNER */}
+    <div style={{ overflowX: 'hidden', backgroundColor: 'var(--bg-dark)' }}>
+      {/* 1. HERO SECTION */}
       <section
-        className="page-banner"
-        style={{ backgroundImage: `url(${images.restaurantWelcome})` }}
+        style={{
+          backgroundImage: `linear-gradient(180deg, rgba(10, 13, 16, 0.65) 0%, rgba(10, 13, 16, 0.95) 100%), url(${images.restaurantWelcome})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          padding: '8rem 1.5rem 4rem 1.5rem',
+          textAlign: 'center',
+          borderBottom: '1px solid var(--border-light)'
+        }}
       >
-        <div className="page-banner-overlay" />
-        <div className="container page-banner-content">
-          <span className="section-tag">VISUAL ATMOSPHERE</span>
-          <h1 className="page-banner-title">Gallery</h1>
-          <p className="section-subtitle light" style={{ marginBottom: '1.5rem', maxWidth: '640px', margin: '0 auto 1.5rem auto' }}>
-            Take a look inside The Asian Table and experience our atmosphere before you visit.
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              backgroundColor: 'rgba(0, 210, 180, 0.1)',
+              border: '1px solid var(--accent)',
+              padding: '0.4rem 1.25rem',
+              borderRadius: '50px',
+              marginBottom: '1.25rem'
+            }}
+          >
+            <Sparkles size={15} color="var(--accent)" />
+            <span
+              style={{
+                fontSize: '0.75rem',
+                color: 'var(--accent)',
+                fontWeight: 700,
+                letterSpacing: '0.18em',
+                textTransform: 'uppercase'
+              }}
+            >
+              Visual Showcase
+            </span>
+          </div>
+
+          <h1
+            style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'clamp(2.4rem, 5vw, 3.6rem)',
+              color: '#FFFFFF',
+              marginBottom: '1rem',
+              letterSpacing: '-0.02em',
+              lineHeight: 1.15
+            }}
+          >
+            Atmosphere & <span style={{ color: 'var(--accent)' }}>Culinary Art</span>
+          </h1>
+
+          <p
+            style={{
+              color: 'var(--text-muted)',
+              fontSize: '1.05rem',
+              lineHeight: 1.7,
+              maxWidth: '620px',
+              margin: '0 auto 1.5rem auto'
+            }}
+          >
+            Experience the refined elegance, handcrafted high-flame delicacies, and tranquil dining spaces of The Asian Table.
           </p>
-          <div className="breadcrumbs">
-            <NavLink to="/">Home</NavLink>
+
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              fontSize: '0.85rem',
+              color: 'var(--text-muted)'
+            }}
+          >
+            <NavLink to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Home</NavLink>
             <span>/</span>
-            <span>Gallery</span>
+            <span style={{ color: 'var(--accent)' }}>Gallery</span>
           </div>
         </div>
       </section>
 
-      {/* 2. GALLERY CATEGORY FILTER TABS */}
-      <section className="section-padding bg-dark" style={{ paddingBottom: '2rem' }}>
-        <div className="container">
+      {/* 2. GALLERY GRID SECTION WITH CATEGORY FILTERS */}
+      <section style={{ padding: '4rem 0 6rem 0', backgroundColor: 'var(--bg-dark)' }}>
+        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
+          
+          {/* Category Filter Chips */}
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               gap: '0.75rem',
-              flexWrap: 'wrap'
+              flexWrap: 'wrap',
+              marginBottom: '3.5rem'
             }}
           >
-            {galleryCategoriesData.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => {
-                  setActiveCategory(cat.id);
-                  setLightboxIndex(null);
-                }}
-                style={{
-                  padding: '0.7rem 1.6rem',
-                  borderRadius: '50px',
-                  fontSize: '0.9rem',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  border: activeCategory === cat.id ? '1px solid var(--accent)' : '1px solid rgba(255, 255, 255, 0.12)',
-                  backgroundColor: activeCategory === cat.id ? 'var(--accent)' : 'rgba(20, 28, 36, 0.7)',
-                  color: activeCategory === cat.id ? '#0A0D10' : '#E0ECEE',
-                  boxShadow: activeCategory === cat.id ? '0 0 20px rgba(0, 210, 180, 0.35)' : 'none'
-                }}
-              >
-                {cat.name}
-              </button>
-            ))}
+            {galleryCategoriesData.map((cat) => {
+              const isActive = activeCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => {
+                    setActiveCategory(cat.id);
+                    setLightboxIndex(null);
+                  }}
+                  style={{
+                    padding: '0.65rem 1.6rem',
+                    borderRadius: '50px',
+                    fontSize: '0.88rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    border: isActive ? '1px solid var(--accent)' : '1px solid rgba(255, 255, 255, 0.1)',
+                    backgroundColor: isActive ? 'var(--accent)' : 'rgba(20, 28, 36, 0.6)',
+                    color: isActive ? '#0A0D10' : '#E0ECEE',
+                    boxShadow: isActive ? '0 0 20px rgba(0, 210, 180, 0.3)' : 'none'
+                  }}
+                >
+                  {cat.name}
+                </button>
+              );
+            })}
           </div>
-        </div>
-      </section>
 
-      {/* 3. MASONRY GRID IMAGE GALLERY (24-30 IMAGES) */}
-      <section className="section-padding bg-secondary" style={{ paddingTop: '2rem' }}>
-        <div className="container">
-          {/* CSS Columns Grid for Masonry Layout */}
-          <div
-            style={{
-              columnCount: '3',
-              columnGap: '1.5rem'
-            }}
-            className="gallery-masonry-container"
-          >
+          {/* Responsive Image Grid (3 desktop, 2 tablet, 1 mobile) */}
+          <div className="clean-gallery-grid">
             {filteredGallery.map((item, idx) => (
               <div
                 key={item.id}
                 onClick={() => setLightboxIndex(idx)}
-                className="hover-lift"
-                style={{
-                  breakInside: 'avoid',
-                  marginBottom: '1.5rem',
-                  borderRadius: '12px',
-                  overflow: 'hidden',
-                  position: 'relative',
-                  cursor: 'pointer',
-                  border: '1px solid var(--border-light)',
-                  backgroundColor: 'var(--bg-white)',
-                  boxShadow: 'var(--shadow-md)'
-                }}
+                className="gallery-card-wrapper"
               >
-                <div style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
+                <div className="gallery-card-inner">
                   <img
                     src={item.image}
                     alt={item.title}
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                      display: 'block',
-                      transition: 'transform 0.5s ease'
-                    }}
+                    className="gallery-card-img"
+                    loading="lazy"
                   />
-                  {/* Overlay Gradient on Hover */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      background: 'linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(10,13,16,0.92) 100%)',
-                      opacity: 0,
-                      transition: 'opacity 0.35s ease',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      padding: '1.25rem'
-                    }}
-                    className="gallery-item-overlay"
-                  >
-                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      <span
-                        style={{
-                          backgroundColor: 'rgba(0, 210, 180, 0.85)',
-                          color: '#0A0D10',
-                          padding: '0.4rem',
-                          borderRadius: '50%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center'
-                        }}
-                      >
-                        <Maximize2 size={16} />
-                      </span>
+                  {/* Subtle Hover Overlay */}
+                  <div className="gallery-card-overlay">
+                    <div className="gallery-card-icon">
+                      <Maximize2 size={18} color="var(--accent)" />
                     </div>
-
                     <div>
-                      <span
-                        style={{
-                          fontSize: '0.72rem',
-                          fontWeight: 700,
-                          textTransform: 'uppercase',
-                          letterSpacing: '0.12em',
-                          color: 'var(--accent)',
-                          display: 'block',
-                          marginBottom: '4px'
-                        }}
-                      >
-                        {item.category}
-                      </span>
-                      <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', color: '#FFFFFF', margin: 0 }}>
-                        {item.title}
-                      </h4>
+                      <span className="gallery-card-cat">{item.category}</span>
+                      <h3 className="gallery-card-title">{item.title}</h3>
                     </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
-      {/* 4. LIGHTBOX MODAL WITH NEXT / PREVIOUS NAVIGATION */}
+      {/* 3. LIGHTBOX MODAL */}
       {lightboxIndex !== null && activeLightboxImage && (
         <div
           style={{
             position: 'fixed',
             inset: 0,
             zIndex: 2000,
-            backgroundColor: 'rgba(5, 7, 9, 0.96)',
+            backgroundColor: 'rgba(5, 7, 9, 0.95)',
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '2rem 1rem'
+            padding: '2rem 1.5rem'
           }}
           onClick={() => setLightboxIndex(null)}
         >
@@ -236,7 +224,7 @@ const GalleryPage = () => {
               position: 'absolute',
               top: '1.5rem',
               right: '1.5rem',
-              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              backgroundColor: 'rgba(255, 255, 255, 0.08)',
               border: '1px solid var(--accent)',
               color: '#FFFFFF',
               borderRadius: '50%',
@@ -247,14 +235,14 @@ const GalleryPage = () => {
               justifyContent: 'center',
               cursor: 'pointer',
               zIndex: 2010,
-              transition: 'all 0.2s ease'
+              transition: 'all 0.25s ease'
             }}
             title="Close Lightbox"
           >
-            <X size={24} color="var(--accent)" />
+            <X size={22} color="var(--accent)" />
           </button>
 
-          {/* Previous Image Button */}
+          {/* Previous Button */}
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -264,27 +252,27 @@ const GalleryPage = () => {
               position: 'absolute',
               left: '1.5rem',
               backgroundColor: 'rgba(20, 28, 36, 0.8)',
-              border: '1px solid var(--accent)',
+              border: '1px solid var(--border-light)',
               color: 'var(--accent)',
               borderRadius: '50%',
-              width: '50px',
-              height: '50px',
+              width: '48px',
+              height: '48px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
               zIndex: 2010
             }}
-            title="Previous Image"
+            title="Previous"
           >
-            <ChevronLeft size={28} />
+            <ChevronLeft size={26} />
           </button>
 
-          {/* Main Image Container */}
+          {/* Main Lightbox Content */}
           <div
             style={{
-              maxWidth: '1000px',
-              maxHeight: '85vh',
+              maxWidth: '960px',
+              width: '100%',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -297,45 +285,45 @@ const GalleryPage = () => {
               alt={activeLightboxImage.title}
               style={{
                 maxWidth: '100%',
-                maxHeight: '72vh',
+                maxHeight: '70vh',
                 objectFit: 'contain',
                 borderRadius: '10px',
                 border: '1px solid var(--border-light)',
-                boxShadow: 'var(--shadow-lg)'
+                boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6)'
               }}
             />
 
-            {/* Lightbox Caption & Details Bar */}
             <div
               style={{
-                marginTop: '1.25rem',
+                marginTop: '1.5rem',
                 textAlign: 'center',
                 backgroundColor: 'rgba(20, 28, 36, 0.9)',
                 border: '1px solid var(--border-light)',
-                borderRadius: '8px',
-                padding: '0.85rem 1.75rem',
-                maxWidth: '600px'
+                borderRadius: '10px',
+                padding: '1rem 2rem',
+                maxWidth: '640px',
+                width: '100%'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', marginBottom: '4px' }}>
-                <span style={{ fontSize: '0.75rem', color: 'var(--accent)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', marginBottom: '6px' }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--accent)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.15em' }}>
                   {activeLightboxImage.category}
                 </span>
-                <span style={{ color: 'rgba(255,255,255,0.3)' }}>|</span>
+                <span style={{ color: 'rgba(255, 255, 255, 0.2)' }}>•</span>
                 <span style={{ fontSize: '0.78rem', color: 'var(--accent-gold)' }}>
                   {lightboxIndex + 1} of {filteredGallery.length}
                 </span>
               </div>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.35rem', color: '#FFFFFF', margin: 0 }}>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', color: '#FFFFFF', margin: 0 }}>
                 {activeLightboxImage.title}
               </h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', marginTop: '4px' }}>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '6px', lineHeight: 1.5 }}>
                 {activeLightboxImage.description}
               </p>
             </div>
           </div>
 
-          {/* Next Image Button */}
+          {/* Next Button */}
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -345,152 +333,120 @@ const GalleryPage = () => {
               position: 'absolute',
               right: '1.5rem',
               backgroundColor: 'rgba(20, 28, 36, 0.8)',
-              border: '1px solid var(--accent)',
+              border: '1px solid var(--border-light)',
               color: 'var(--accent)',
               borderRadius: '50%',
-              width: '50px',
-              height: '50px',
+              width: '48px',
+              height: '48px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
               zIndex: 2010
             }}
-            title="Next Image"
+            title="Next"
           >
-            <ChevronRight size={28} />
+            <ChevronRight size={26} />
           </button>
         </div>
       )}
 
-      {/* 5. INSTAGRAM FOOD JOURNEY SECTION */}
-      <section className="section-padding bg-dark" style={{ borderTop: '1px solid var(--border-light)' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <div
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                color: 'var(--accent)',
-                marginBottom: '0.75rem'
-              }}
-            >
-              <Instagram size={20} />
-              <span style={{ fontSize: '0.85rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
-                @TheAsianTable
-              </span>
-            </div>
-            <h2 className="section-title">Follow Our Food Journey</h2>
-            <p className="section-subtitle">
-              Tag <strong style={{ color: '#FFFFFF' }}>#TheAsianTable</strong> on Instagram to be featured in our official guest gallery.
-            </p>
-          </div>
-
-          {/* Instagram Grid Layout */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-              gap: '1.25rem'
-            }}
-          >
-            {instagramPostsData.map((post) => (
-              <a
-                key={post.id}
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover-lift"
-                style={{
-                  display: 'block',
-                  borderRadius: '10px',
-                  overflow: 'hidden',
-                  position: 'relative',
-                  height: '200px',
-                  border: '1px solid var(--border-subtle)'
-                }}
-              >
-                <img
-                  src={post.image}
-                  alt="Instagram post"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-                {/* Hover Overlay with Likes & Comments */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    backgroundColor: 'rgba(10, 13, 16, 0.85)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '0.5rem',
-                    opacity: 0,
-                    transition: 'opacity 0.3s ease',
-                    padding: '1rem',
-                    textAlign: 'center'
-                  }}
-                  className="gallery-item-overlay"
-                >
-                  <Instagram size={26} color="var(--accent)" />
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: '#FFFFFF', fontSize: '0.85rem', fontWeight: 600 }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                      <Heart size={14} fill="var(--accent)" color="var(--accent)" /> {post.likes}
-                    </span>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                      <MessageCircle size={14} color="#FFFFFF" /> {post.comments}
-                    </span>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. BOTTOM CTA SECTION */}
-      <section className="section-padding bg-secondary" style={{ textAlign: 'center', borderTop: '1px solid var(--border-light)' }}>
-        <div className="container" style={{ maxWidth: '800px' }}>
-          <span className="section-tag">Experience It In Person</span>
-          <h2 className="section-title">Join Us At The Asian Table</h2>
-          <p className="section-subtitle" style={{ marginBottom: '2.5rem' }}>
-            Book your sanctuary table today to enjoy high-flame Asian delicacies in an setting of gold luxury.
-          </p>
-
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1.25rem', flexWrap: 'wrap' }}>
-            <button onClick={() => setIsReservationOpen(true)} className="btn btn-teal" style={{ padding: '1.05rem 2.2rem' }}>
-              <Calendar size={18} />
-              <span>Reserve Table</span>
-            </button>
-
-            <button onClick={() => navigate('/menu')} className="btn btn-outline-light" style={{ padding: '1.05rem 2.2rem' }}>
-              <span>Explore Signature Menu</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Embedded CSS for Masonry and Overlay Hover Effects */}
+      {/* Embedded Clean Grid CSS */}
       <style>{`
-        .gallery-item-overlay {
+        .clean-gallery-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
+        }
+
+        .gallery-card-wrapper {
+          border-radius: 12px;
+          overflow: hidden;
+          background-color: var(--bg-white);
+          border: 1px solid var(--border-light);
+          cursor: pointer;
+          transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .gallery-card-wrapper:hover {
+          box-shadow: 0 12px 30px rgba(0, 210, 180, 0.15);
+        }
+
+        .gallery-card-inner {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 4 / 3;
+          overflow: hidden;
+        }
+
+        .gallery-card-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.5s ease;
+        }
+
+        .gallery-card-wrapper:hover .gallery-card-img {
+          transform: scale(1.05);
+        }
+
+        .gallery-card-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(10, 13, 16, 0) 30%, rgba(10, 13, 16, 0.88) 100%);
           opacity: 0;
+          transition: opacity 0.35s ease;
+          padding: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
         }
-        .hover-lift:hover .gallery-item-overlay {
-          opacity: 1 !important;
+
+        .gallery-card-wrapper:hover .gallery-card-overlay {
+          opacity: 1;
         }
-        .hover-lift:hover img {
-          transform: scale(1.06);
+
+        .gallery-card-icon {
+          align-self: flex-end;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background-color: rgba(10, 13, 16, 0.75);
+          border: 1px solid var(--accent);
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
-        @media (max-width: 900px) {
-          .gallery-masonry-container {
-            column-count: 2 !important;
+
+        .gallery-card-cat {
+          font-size: 0.72rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.14em;
+          color: var(--accent);
+          display: block;
+          margin-bottom: 4px;
+        }
+
+        .gallery-card-title {
+          font-family: var(--font-serif);
+          font-size: 1.15rem;
+          color: #FFFFFF;
+          margin: 0;
+        }
+
+        @media (max-width: 992px) {
+          .clean-gallery-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
           }
         }
-        @media (max-width: 550px) {
-          .gallery-masonry-container {
-            column-count: 1 !important;
+
+        @media (max-width: 576px) {
+          .clean-gallery-grid {
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
           }
         }
       `}</style>
