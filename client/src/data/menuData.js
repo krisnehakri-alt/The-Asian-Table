@@ -1,6 +1,9 @@
 // Static Menu Dataset for THE ASIAN TABLE - Milestone 2
 
 import crispyHoneyChilliPotato from '../assets/crispy_honey_chilli_potato.png';
+import eggHakkaNoodles from '../assets/egg_hakka_noodles.png';
+import schezwanNoodles from '../assets/schezwan_noodles.png';
+import chilliGarlicNoodles from '../assets/chilli_garlic_noodles.png';
 
 export const menuCategoriesData = [
   {
@@ -75,7 +78,7 @@ export const menuItemsData = [
     isPopular: false,
     isChefRecommended: false,
     description: 'Scrambled eggs wok-tossed with thin noodles, crunchy scallions, shredded cabbage, and white pepper.',
-    image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=800'
+    image: eggHakkaNoodles
   },
   {
     id: 'garlic-noodles',
@@ -111,7 +114,7 @@ export const menuItemsData = [
     isPopular: true,
     isChefRecommended: false,
     description: 'Fiery noodles tossed in vibrant house-made Sichuan pepper chili sauce and garden fresh crisp vegetables.',
-    image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=800'
+    image: schezwanNoodles
   },
   {
     id: 'singapore-noodles',
@@ -135,7 +138,7 @@ export const menuItemsData = [
     isPopular: true,
     isChefRecommended: true,
     description: 'Bold & spicy wok-tossed noodles with crushed red chillies, garlic paste, bell peppers, and scallions.',
-    image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=800'
+    image: chilliGarlicNoodles
   },
 
   // CATEGORY 2: Asian Rice (8 dishes)
