@@ -5,6 +5,8 @@ import Footer from './components/Footer';
 import SplashScreen from './components/SplashScreen';
 import ReservationModal from './components/ReservationModal';
 import HomePage from './pages/HomePage';
+import MenuPage from './pages/MenuPage';
+import GalleryPage from './pages/GalleryPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
@@ -36,6 +38,8 @@ function App() {
         <main style={{ flexGrow: 1 }}>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/menu" element={<MenuPage />} />
+            <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />

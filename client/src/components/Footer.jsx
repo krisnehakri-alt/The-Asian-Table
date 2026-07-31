@@ -200,6 +200,16 @@ const Footer = () => {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/menu" style={{ color: '#94A8B3', textDecoration: 'none', transition: 'color 0.2s ease' }} onMouseOver={(e) => e.target.style.color = 'var(--accent)'} onMouseOut={(e) => e.target.style.color = '#94A8B3'}>
+                  Our Signature Menu
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/gallery" style={{ color: '#94A8B3', textDecoration: 'none', transition: 'color 0.2s ease' }} onMouseOver={(e) => e.target.style.color = 'var(--accent)'} onMouseOut={(e) => e.target.style.color = '#94A8B3'}>
+                  Photo Gallery
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/about" style={{ color: '#94A8B3', textDecoration: 'none', transition: 'color 0.2s ease' }} onMouseOver={(e) => e.target.style.color = 'var(--accent)'} onMouseOut={(e) => e.target.style.color = '#94A8B3'}>
                   About Our Restaurant
                 </NavLink>

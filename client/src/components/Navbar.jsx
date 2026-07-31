@@ -125,6 +125,36 @@ const Navbar = ({ onBookTableClick }) => {
           </NavLink>
 
           <NavLink
+            to="/menu"
+            style={({ isActive }) => ({
+              textDecoration: 'none',
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.95rem',
+              fontWeight: 500,
+              letterSpacing: '0.05em',
+              color: isActive ? 'var(--accent)' : '#E0ECEE',
+              transition: 'color 0.25s ease'
+            })}
+          >
+            Menu
+          </NavLink>
+
+          <NavLink
+            to="/gallery"
+            style={({ isActive }) => ({
+              textDecoration: 'none',
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.95rem',
+              fontWeight: 500,
+              letterSpacing: '0.05em',
+              color: isActive ? 'var(--accent)' : '#E0ECEE',
+              transition: 'color 0.25s ease'
+            })}
+          >
+            Gallery
+          </NavLink>
+
+          <NavLink
             to="/about"
             style={({ isActive }) => ({
               textDecoration: 'none',
@@ -206,6 +236,30 @@ const Navbar = ({ onBookTableClick }) => {
             })}
           >
             Home
+          </NavLink>
+
+          <NavLink
+            to="/menu"
+            style={({ isActive }) => ({
+              textDecoration: 'none',
+              fontSize: '1.1rem',
+              fontWeight: 500,
+              color: isActive ? 'var(--accent)' : '#FFFFFF'
+            })}
+          >
+            Menu
+          </NavLink>
+
+          <NavLink
+            to="/gallery"
+            style={({ isActive }) => ({
+              textDecoration: 'none',
+              fontSize: '1.1rem',
+              fontWeight: 500,
+              color: isActive ? 'var(--accent)' : '#FFFFFF'
+            })}
+          >
+            Gallery
           </NavLink>
 
           <NavLink
