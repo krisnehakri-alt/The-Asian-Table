@@ -51,18 +51,18 @@ const MenuPage = () => {
 
       if (!query) return true;
 
+      // Strict Veg / Non-Veg Filter Override
+      if (query === 'veg' || query === 'vegetarian') {
+        return item.isVeg === true;
+      }
+      if (query === 'non-veg' || query === 'non veg' || query === 'nonveg') {
+        return item.isVeg === false;
+      }
+
       // Check name, category name, description
       const nameMatch = item.name.toLowerCase().includes(query) || item.name.toLowerCase().includes(normalizedQuery);
       const categoryMatch = item.category.toLowerCase().includes(query);
       const descMatch = item.description.toLowerCase().includes(query) || item.description.toLowerCase().includes(normalizedQuery);
-
-      // Check Veg / Non-Veg search terms
-      let vegMatch = false;
-      if (query === 'veg' || query === 'vegetarian') {
-        vegMatch = item.isVeg === true;
-      } else if (query === 'non veg' || query === 'non-veg' || query === 'nonveg') {
-        vegMatch = item.isVeg === false;
-      }
 
       // Special & Popular tags match
       const specialMatch =
@@ -70,7 +70,7 @@ const MenuPage = () => {
       const popularMatch =
         (query === 'popular' || query === 'bestseller') && item.isPopular;
 
-      return nameMatch || categoryMatch || descMatch || vegMatch || specialMatch || popularMatch;
+      return nameMatch || categoryMatch || descMatch || specialMatch || popularMatch;
     });
   }, [searchQuery, activeCategoryFilter]);
 
@@ -203,7 +203,7 @@ const MenuPage = () => {
               </button>
               <input
                 type="text"
-                placeholder="Search dishes (Noodles, Rice, Momos, Manchurian, Chicken, Veg...)"
+                placeholder="Search dishes (Noodles, Rice, Momos, Manchurian, Non-Veg, Veg...)"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 style={{
@@ -249,7 +249,7 @@ const MenuPage = () => {
               }}
             >
               <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Popular Searches:</span>
-              {['Noodles', 'Rice', 'Momos', 'Manchurian', 'Chicken', 'Veg', 'Dragon'].map((tag) => (
+              {['Noodles', 'Rice', 'Momos', 'Manchurian', 'Non-Veg', 'Veg', 'Dragon'].map((tag) => (
                 <button
                   key={tag}
                   type="button"
