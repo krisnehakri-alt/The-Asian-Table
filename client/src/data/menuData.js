@@ -1,5 +1,7 @@
 // Static Menu Dataset for THE ASIAN TABLE - Milestone 2
 
+import crispyHoneyChilliPotato from '../assets/crispy_honey_chilli_potato.png';
+
 export const menuCategoriesData = [
   {
     id: 'asian-noodles',
@@ -403,7 +405,7 @@ export const menuItemsData = [
     isPopular: true,
     isChefRecommended: true,
     description: 'Double-fried potato batons glazed in sweet organic honey, chilli paste, and toasted white sesame seeds.',
-    image: 'https://images.unsplash.com/photo-1518013038508-76151d356917?auto=format&fit=crop&q=80&w=800'
+    image: crispyHoneyChilliPotato
   },
   {
     id: 'kung-pao-chicken',

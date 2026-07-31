@@ -29,22 +29,48 @@ const MenuPage = () => {
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('all');
   const [isReservationOpen, setIsReservationOpen] = useState(false);
 
+  const handleSearchSubmit = (e) => {
+    if (e) e.preventDefault();
+    const menuGrid = document.getElementById('menu-items-grid');
+    if (menuGrid) {
+      menuGrid.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   // Filtered menu items based on search query and active category filter
   const filteredMenuItems = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    const normalizedQuery = query.replace(/chili/g, 'chilli').replace(/sichuan/g, 'schezwan');
+
     return menuItemsData.filter((item) => {
-      // Category match
+      // If search query exists, match globally across all categories
       const matchesCategory =
-        activeCategoryFilter === 'all' || item.categoryId === activeCategoryFilter;
+        !query || activeCategoryFilter === 'all' || item.categoryId === activeCategoryFilter;
 
-      // Search query match across name, category name, description, tags
-      const query = searchQuery.trim().toLowerCase();
-      const matchesSearch =
-        !query ||
-        item.name.toLowerCase().includes(query) ||
-        item.category.toLowerCase().includes(query) ||
-        item.description.toLowerCase().includes(query);
+      if (!matchesCategory) return false;
 
-      return matchesCategory && matchesSearch;
+      if (!query) return true;
+
+      // Check name, category name, description
+      const nameMatch = item.name.toLowerCase().includes(query) || item.name.toLowerCase().includes(normalizedQuery);
+      const categoryMatch = item.category.toLowerCase().includes(query);
+      const descMatch = item.description.toLowerCase().includes(query) || item.description.toLowerCase().includes(normalizedQuery);
+
+      // Check Veg / Non-Veg search terms
+      let vegMatch = false;
+      if (query === 'veg' || query === 'vegetarian') {
+        vegMatch = item.isVeg === true;
+      } else if (query === 'non veg' || query === 'non-veg' || query === 'nonveg') {
+        vegMatch = item.isVeg === false;
+      }
+
+      // Special & Popular tags match
+      const specialMatch =
+        (query === 'chef' || query === 'special' || query === 'recommended') && item.isChefRecommended;
+      const popularMatch =
+        (query === 'popular' || query === 'bestseller') && item.isPopular;
+
+      return nameMatch || categoryMatch || descMatch || vegMatch || specialMatch || popularMatch;
     });
   }, [searchQuery, activeCategoryFilter]);
 
@@ -145,7 +171,8 @@ const MenuPage = () => {
               position: 'relative'
             }}
           >
-            <div
+            <form
+              onSubmit={handleSearchSubmit}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -159,7 +186,21 @@ const MenuPage = () => {
                 transition: 'all 0.3s ease'
               }}
             >
-              <Search size={22} color="var(--accent)" style={{ flexShrink: 0, marginRight: '0.8rem' }} />
+              <button
+                type="submit"
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: 0,
+                  marginRight: '0.8rem'
+                }}
+                title="Search menu"
+              >
+                <Search size={22} color="var(--accent)" style={{ flexShrink: 0 }} />
+              </button>
               <input
                 type="text"
                 placeholder="Search dishes (Noodles, Rice, Momos, Manchurian, Chicken, Veg...)"
@@ -178,6 +219,7 @@ const MenuPage = () => {
               />
               {searchQuery && (
                 <button
+                  type="button"
                   onClick={() => setSearchQuery('')}
                   style={{
                     background: 'transparent',
@@ -193,7 +235,7 @@ const MenuPage = () => {
                   <XCircle size={20} />
                 </button>
               )}
-            </div>
+            </form>
 
             {/* Quick Keyword Pills under Search Bar */}
             <div
@@ -210,7 +252,12 @@ const MenuPage = () => {
               {['Noodles', 'Rice', 'Momos', 'Manchurian', 'Chicken', 'Veg', 'Dragon'].map((tag) => (
                 <button
                   key={tag}
-                  onClick={() => setSearchQuery(tag)}
+                  type="button"
+                  onClick={() => {
+                    setSearchQuery(tag);
+                    setActiveCategoryFilter('all');
+                    handleSearchSubmit();
+                  }}
                   style={{
                     background: searchQuery === tag ? 'var(--accent)' : 'rgba(255, 255, 255, 0.06)',
                     color: searchQuery === tag ? '#0A0D10' : 'var(--text-muted)',
@@ -472,9 +519,9 @@ const MenuPage = () => {
               </button>
             </div>
           ) : (
-            // Group by category if viewing 'all'
+            // Group by category if viewing 'all' or when search query is entered
             menuCategoriesData
-              .filter((cat) => activeCategoryFilter === 'all' || activeCategoryFilter === cat.id)
+              .filter((cat) => searchQuery.trim() !== '' || activeCategoryFilter === 'all' || activeCategoryFilter === cat.id)
               .map((cat) => {
                 const categoryDishes = filteredMenuItems.filter((item) => item.categoryId === cat.id);
 
