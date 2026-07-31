@@ -86,7 +86,7 @@ export const signatureDishesData = [
     price: '$28.00',
     tags: ['Special Asian', 'Premium Dish'],
     description: 'Crispy vegetable dumplings tossed in a rich, tangy garlic soy and spring onion glaze.',
-    image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: 'chicken-manchurian',
@@ -95,7 +95,7 @@ export const signatureDishesData = [
     price: '$34.00',
     tags: ['Special Asian', 'Chef Signature'],
     description: 'Tender chicken bites wok-tossed in dark soy sauce, fresh ginger, chili peppers, and coriander.',
-    image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: 'asian-noodles',
