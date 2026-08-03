@@ -842,7 +842,7 @@ const HomePage = () => {
             Whether an intimate dinner for two or a private family celebration, reserve your sanctuary table today.
           </p>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.25rem', flexWrap: 'wrap' }}>
-            <button onClick={() => setIsReservationOpen(true)} className="btn btn-teal" style={{ padding: '1rem 2.5rem' }}>
+            <button onClick={() => handleOrderDishClick(null)} className="btn btn-teal" style={{ padding: '1rem 2.5rem' }}>
               <PhoneCall size={18} />
               <span>Instant Online Booking</span>
             </button>
