@@ -505,41 +505,8 @@ const HomePage = () => {
             <span className="section-tag">Sanctuaries Of Dining</span>
             <h2 className="section-title">Our Flagship Destinations</h2>
             <p className="section-subtitle">
-              Explore our luxury venue branches, check live dining hours, and reserve your preferred table location.
+              Explore our luxury venue, check live dining hours, and reserve your preferred table location.
             </p>
-
-            {/* Interactive Branch Switcher */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '1rem',
-                flexWrap: 'wrap',
-                marginTop: '2rem'
-              }}
-            >
-              {branchData.map((b) => (
-                <button
-                  key={b.id}
-                  onClick={() => setSelectedBranchId(b.id)}
-                  style={{
-                    padding: '0.85rem 1.8rem',
-                    borderRadius: '8px',
-                    fontSize: '0.92rem',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    border: selectedBranchId === b.id ? '1px solid var(--accent)' : '1px solid rgba(255, 255, 255, 0.1)',
-                    backgroundColor: selectedBranchId === b.id ? 'rgba(0, 210, 180, 0.12)' : 'var(--bg-white)',
-                    color: selectedBranchId === b.id ? 'var(--accent)' : '#E0ECEE',
-                    boxShadow: selectedBranchId === b.id ? '0 0 20px rgba(0, 210, 180, 0.2)' : 'none'
-                  }}
-                >
-                  {b.name}
-                </button>
-              ))}
-            </div>
           </div>
 
           {/* Active Branch Display Card */}
