@@ -31,40 +31,7 @@ const GoogleMapSection = () => {
           </p>
         </div>
 
-        {/* Branch Switcher Tabs */}
-        {branches.length > 1 && (
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '1rem',
-            marginBottom: '2rem',
-            flexWrap: 'wrap'
-          }}>
-            {branches.map((b) => (
-              <button
-                key={b.id}
-                onClick={() => setSelectedBranchId(b.id)}
-                style={{
-                  padding: '0.75rem 1.5rem',
-                  borderRadius: '30px',
-                  border: '1px solid var(--accent)',
-                  backgroundColor: selectedBranchId === b.id ? 'var(--accent)' : 'transparent',
-                  color: selectedBranchId === b.id ? '#000' : 'var(--accent)',
-                  fontWeight: selectedBranchId === b.id ? '700' : '500',
-                  fontSize: '0.9rem',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem'
-                }}
-              >
-                <MapPin size={16} />
-                <span>{b.name}</span>
-              </button>
-            ))}
-          </div>
-        )}
+
 
         {/* Map Display Container */}
         <div style={{
