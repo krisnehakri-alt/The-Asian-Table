@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { Navigation, ZoomIn, ZoomOut, Compass, ExternalLink, MapPin, Phone } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { Navigation, Compass, ExternalLink, MapPin, Phone } from 'lucide-react';
 import { useData } from '../context/DataContext';
 
 const OpenStreetMapSection = () => {
   const { branches, settings } = useData();
-  const [zoomLevel, setZoomLevel] = useState(15);
+  const mapContainerRef = useRef(null);
+  const mapInstanceRef = useRef(null);
 
   const activeBranch = branches[0] || {
     name: settings.restaurantName || 'The Asian Table',
@@ -16,13 +17,73 @@ const OpenStreetMapSection = () => {
   const lat = 40.7484;
   const lon = -73.9857;
 
-  // Calculate dynamic bounding box delta based on zoomLevel state
-  // High zoom = small delta (zoomed in), Low zoom = larger delta (zoomed out)
-  const delta = 0.25 / Math.pow(2, zoomLevel - 10);
+  const directionsUrl = `https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=%3B${lat}%2C${lon}#map=15/${lat}/${lon}`;
 
-  // OpenStreetMap embed URL & Directions link
-  const embedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${lon - delta}%2C${lat - delta}%2C${lon + delta}%2C${lat + delta}&layer=mapnik&marker=${lat}%2C${lon}`;
-  const directionsUrl = `https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=%3B${lat}%2C${lon}#map=${zoomLevel}/${lat}/${lon}`;
+  useEffect(() => {
+    // Load Leaflet CSS dynamically if not present
+    if (!document.getElementById('leaflet-css')) {
+      const link = document.createElement('link');
+      link.id = 'leaflet-css';
+      link.rel = 'stylesheet';
+      link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+      document.head.appendChild(link);
+    }
+
+    // Function to initialize Leaflet Map once Leaflet JS is ready
+    const initLeafletMap = () => {
+      if (!window.L || !mapContainerRef.current) return;
+      if (mapInstanceRef.current) return; // Map already created
+
+      const map = window.L.map(mapContainerRef.current, {
+        center: [lat, lon],
+        zoom: 15,
+        scrollWheelZoom: false
+      });
+
+      mapInstanceRef.current = map;
+
+      // Add OpenStreetMap tiles
+      window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      // Create Custom Leaflet Marker with Popup
+      const popupContent = `
+        <div style="font-family: inherit; color: #0A0D10; padding: 4px;">
+          <h4 style="margin: 0 0 4px 0; font-family: 'Cinzel', serif; font-size: 1.1rem; color: #008D79;">${activeBranch.name}</h4>
+          <p style="margin: 0 0 6px 0; font-size: 0.85rem; color: #4A5568;">88 Gold Coast Boulevard<br/>Manhattan, New York, NY 10001</p>
+          <span style="font-size: 0.82rem; font-weight: 600; color: #D4AF37;">${activeBranch.phone}</span>
+        </div>
+      `;
+
+      const marker = window.L.marker([lat, lon]).addTo(map);
+      marker.bindPopup(popupContent).openPopup();
+    };
+
+    // Load Leaflet JS script dynamically
+    if (window.L) {
+      initLeafletMap();
+    } else {
+      let script = document.getElementById('leaflet-js');
+      if (!script) {
+        script = document.createElement('script');
+        script.id = 'leaflet-js';
+        script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+        script.onload = initLeafletMap;
+        document.body.appendChild(script);
+      } else {
+        script.addEventListener('load', initLeafletMap);
+      }
+    }
+
+    return () => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.remove();
+        mapInstanceRef.current = null;
+      }
+    };
+  }, []);
 
   return (
     <section style={{ backgroundColor: 'var(--primary)', padding: '4rem 0', borderTop: '1px solid rgba(0, 210, 180, 0.15)' }}>
@@ -74,24 +135,6 @@ const OpenStreetMapSection = () => {
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              {/* Zoom Level Indicator */}
-              <div style={{ display: 'flex', backgroundColor: '#14181f', borderRadius: '6px', overflow: 'hidden', border: '1px solid var(--border-subtle)' }}>
-                <button
-                  onClick={() => setZoomLevel((z) => Math.min(z + 1, 18))}
-                  title="Zoom In"
-                  style={{ padding: '0.5rem 0.75rem', background: 'none', border: 'none', color: '#FFF', cursor: 'pointer', borderRight: '1px solid var(--border-subtle)' }}
-                >
-                  <ZoomIn size={16} />
-                </button>
-                <button
-                  onClick={() => setZoomLevel((z) => Math.max(z - 1, 10))}
-                  title="Zoom Out"
-                  style={{ padding: '0.5rem 0.75rem', background: 'none', border: 'none', color: '#FFF', cursor: 'pointer' }}
-                >
-                  <ZoomOut size={16} />
-                </button>
-              </div>
-
               {/* Get Directions Button */}
               <a
                 href={directionsUrl}
@@ -107,15 +150,11 @@ const OpenStreetMapSection = () => {
             </div>
           </div>
 
-          {/* Embedded OpenStreetMap Iframe with Marker & Custom Card Overlay */}
+          {/* Embedded Native Leaflet Map Container */}
           <div style={{ position: 'relative', width: '100%', height: '450px', backgroundColor: '#1a1a1a' }}>
-            <iframe
-              title={`OpenStreetMap - ${activeBranch.name}`}
-              width="100%"
-              height="100%"
-              style={{ border: 0, filter: 'contrast(1.05) saturate(1.1)' }}
-              loading="lazy"
-              src={embedUrl}
+            <div
+              ref={mapContainerRef}
+              style={{ width: '100%', height: '100%', zIndex: 1 }}
             />
 
             {/* Custom Location Popup Overlay Card */}
@@ -131,7 +170,8 @@ const OpenStreetMapSection = () => {
               maxWidth: '320px',
               color: '#FFFFFF',
               boxShadow: '0 10px 30px rgba(0,0,0,0.8)',
-              zIndex: 10
+              zIndex: 1000,
+              pointerEvents: 'none'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
                 <MapPin size={18} color="var(--accent)" />
@@ -158,3 +198,4 @@ const OpenStreetMapSection = () => {
 };
 
 export default OpenStreetMapSection;
+
