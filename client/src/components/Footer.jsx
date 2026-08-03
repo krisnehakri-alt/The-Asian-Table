@@ -145,39 +145,6 @@ const Footer = () => {
               >
                 <Twitter size={18} />
               </a>
-              <a
-                href="https://www.tripadvisor.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Awards & Reviews"
-                title="Awards & Reviews on TripAdvisor"
-                style={{
-                  color: 'var(--accent)',
-                  padding: '0.55rem',
-                  background: 'rgba(0, 210, 180, 0.08)',
-                  border: '1px solid rgba(0, 210, 180, 0.2)',
-                  borderRadius: '6px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  transition: 'all 0.3s ease',
-                  textDecoration: 'none'
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.background = 'var(--accent)';
-                  e.currentTarget.style.color = '#0A0D10';
-                  e.currentTarget.style.transform = 'translateY(-3px)';
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 210, 180, 0.4)';
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.background = 'rgba(0, 210, 180, 0.08)';
-                  e.currentTarget.style.color = 'var(--accent)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
-                }}
-              >
-                <Award size={18} />
-              </a>
             </div>
           </div>
 
