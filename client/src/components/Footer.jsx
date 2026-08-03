@@ -251,7 +251,7 @@ const Footer = () => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.92rem', color: '#94A8B3' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <MapPin size={18} color="var(--accent)" style={{ flexShrink: 0 }} />
-                <span>88 Gold Coast Boulevard, Financial District</span>
+                <span>88 Gold Coast Boulevard, Manhattan, New York, NY 10001</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <Phone size={18} color="var(--accent)" style={{ flexShrink: 0 }} />

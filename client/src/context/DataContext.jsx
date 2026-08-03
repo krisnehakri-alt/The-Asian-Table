@@ -19,7 +19,7 @@ const initialSettings = {
   tagline: 'Luxury Asian Cuisine & Fine Dining',
   email: 'concierge@asiantable.com',
   phone: '+1 (800) 555-0199',
-  address: '88 Gold Coast Boulevard, Suite 400, Financial District',
+  address: '88 Gold Coast Boulevard, Manhattan, New York, NY 10001, United States',
   openingHours: 'Mon - Sun: 11:30 AM - 11:00 PM',
   footerContent: 'Experience authentic Asian culinary arts in an atmosphere of refined luxury.',
   facebook: 'https://facebook.com',

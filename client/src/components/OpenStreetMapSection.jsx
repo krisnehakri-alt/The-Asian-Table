@@ -7,17 +7,17 @@ const OpenStreetMapSection = () => {
   const [zoomLevel, setZoomLevel] = useState(15);
 
   const activeBranch = branches[0] || {
-    name: settings.restaurantName || 'THE ASIAN TABLE',
-    address: settings.address || '88 Gold Coast Boulevard, Suite 400, Financial District',
+    name: settings.restaurantName || 'The Asian Table',
+    address: '88 Gold Coast Boulevard, Manhattan, New York, NY 10001, United States',
     phone: settings.phone || '+1 (800) 555-0199'
   };
 
-  // OpenStreetMap coordinates (Defaulted to central luxury district location 28.4595, 77.0266)
-  const lat = 28.4595;
-  const lon = 77.0266;
+  // OpenStreetMap coordinates (Manhattan, New York, NY 10001)
+  const lat = 40.7484;
+  const lon = -73.9857;
 
   // OpenStreetMap embed URL & Directions link
-  const embedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${lon - 0.01}%2C${lat - 0.01}%2C${lon + 0.01}%2C${lat + 0.01}&layer=mapnik&marker=${lat}%2C${lon}`;
+  const embedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${lon - 0.008}%2C${lat - 0.008}%2C${lon + 0.008}%2C${lat + 0.008}&layer=mapnik&marker=${lat}%2C${lon}`;
   const directionsUrl = `https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=%3B${lat}%2C${lon}#map=15/${lat}/${lon}`;
 
   return (

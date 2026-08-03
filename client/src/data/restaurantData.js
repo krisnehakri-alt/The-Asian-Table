@@ -164,7 +164,7 @@ export const branchData = [
   {
     id: 'downtown',
     name: 'Central Downtown Flagship',
-    address: '88 Gold Coast Boulevard, Suite 400, Financial District',
+    address: '88 Gold Coast Boulevard, Manhattan, New York, NY 10001, United States',
     phone: '+1 (800) 555-0199',
     reservationPhone: '+1 (800) 555-0191',
     openingHours: 'Mon - Sun: 11:30 AM - 11:00 PM',
