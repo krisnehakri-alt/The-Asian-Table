@@ -1,58 +1,63 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   Sparkles,
   X,
   ChevronLeft,
   ChevronRight,
-  Maximize2
+  Maximize2,
+  CheckCircle2,
+  UtensilsCrossed,
+  Award,
+  Leaf,
+  HeartHandshake
 } from 'lucide-react';
-import {
-  galleryCategoriesData,
-  galleryImagesData
-} from '../data/galleryData';
+import { galleryImagesData as defaultGallery } from '../data/galleryData';
 import { images } from '../data/restaurantData';
 import { useData } from '../context/DataContext';
 
 const GalleryPage = () => {
-  const { galleryImages: galleryImagesData, galleryCategories: galleryCategoriesData } = useData();
-  const [activeCategory, setActiveCategory] = useState('all');
+  const { galleryImages } = useData();
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
-  // Filter gallery images based on active category
-  const filteredGallery = useMemo(() => {
-    if (activeCategory === 'all') return galleryImagesData;
-    return galleryImagesData.filter((item) => item.category === activeCategory);
-  }, [activeCategory, galleryImagesData]);
+  // Use galleryImages if available, fallback to default 6 curated images
+  const displayGallery = galleryImages && galleryImages.length > 0 ? galleryImages.slice(0, 6) : defaultGallery;
 
-  // Lightbox Keyboard Navigation (Escape, ArrowLeft, ArrowRight)
+  // Lightbox Keyboard Navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (lightboxIndex === null) return;
       if (e.key === 'Escape') {
         setLightboxIndex(null);
       } else if (e.key === 'ArrowLeft') {
-        setLightboxIndex((prev) => (prev > 0 ? prev - 1 : filteredGallery.length - 1));
+        setLightboxIndex((prev) => (prev > 0 ? prev - 1 : displayGallery.length - 1));
       } else if (e.key === 'ArrowRight') {
-        setLightboxIndex((prev) => (prev < filteredGallery.length - 1 ? prev + 1 : 0));
+        setLightboxIndex((prev) => (prev < displayGallery.length - 1 ? prev + 1 : 0));
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [lightboxIndex, filteredGallery.length]);
+  }, [lightboxIndex, displayGallery.length]);
 
-  const activeLightboxImage = lightboxIndex !== null ? filteredGallery[lightboxIndex] : null;
+  const activeLightboxImage = lightboxIndex !== null ? displayGallery[lightboxIndex] : null;
+
+  const highlights = [
+    { title: 'Authentic Asian fine dining', desc: 'Preserving centuries-old culinary heritage recipes', icon: UtensilsCrossed },
+    { title: 'Premium ambience', desc: 'Sophisticated dark mahogany and warm glowing lanterns', icon: Award },
+    { title: 'Fresh ingredients', desc: 'Organic herbs and sushi-grade seafood sourced daily', icon: Leaf },
+    { title: 'Exceptional customer experience', desc: 'Attentive luxury hospitality tailored for every guest', icon: HeartHandshake }
+  ];
 
   return (
     <div style={{ overflowX: 'hidden', backgroundColor: 'var(--bg-dark)' }}>
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO BANNER */}
       <section
         style={{
           backgroundImage: `linear-gradient(180deg, rgba(10, 13, 16, 0.65) 0%, rgba(10, 13, 16, 0.95) 100%), url(${images.restaurantWelcome})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          padding: '8rem 1.5rem 4rem 1.5rem',
+          padding: '7rem 1.5rem 3.5rem 1.5rem',
           textAlign: 'center',
           borderBottom: '1px solid var(--border-light)'
         }}
@@ -67,7 +72,7 @@ const GalleryPage = () => {
               border: '1px solid var(--accent)',
               padding: '0.4rem 1.25rem',
               borderRadius: '50px',
-              marginBottom: '1.25rem'
+              marginBottom: '1rem'
             }}
           >
             <Sparkles size={15} color="var(--accent)" />
@@ -80,7 +85,7 @@ const GalleryPage = () => {
                 textTransform: 'uppercase'
               }}
             >
-              Visual Showcase
+              OUR RESTAURANT AMBIENCE
             </span>
           </div>
 
@@ -89,25 +94,13 @@ const GalleryPage = () => {
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(2.4rem, 5vw, 3.6rem)',
               color: '#FFFFFF',
-              marginBottom: '1rem',
+              marginBottom: '0.75rem',
               letterSpacing: '-0.02em',
               lineHeight: 1.15
             }}
           >
-            Atmosphere & <span style={{ color: 'var(--accent)' }}>Culinary Art</span>
+            Photo <span style={{ color: 'var(--accent)' }}>Gallery</span>
           </h1>
-
-          <p
-            style={{
-              color: 'var(--text-muted)',
-              fontSize: '1.05rem',
-              lineHeight: 1.7,
-              maxWidth: '620px',
-              margin: '0 auto 1.5rem auto'
-            }}
-          >
-            Experience the refined elegance, handcrafted high-flame delicacies, and tranquil dining spaces of The Asian Table.
-          </p>
 
           <div
             style={{
@@ -121,82 +114,122 @@ const GalleryPage = () => {
           >
             <NavLink to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Home</NavLink>
             <span>/</span>
-            <span style={{ color: 'var(--accent)' }}>Gallery</span>
+            <span style={{ color: 'var(--accent)' }}>Photo Gallery</span>
           </div>
         </div>
       </section>
 
-      {/* 2. GALLERY GRID SECTION WITH CATEGORY FILTERS */}
-      <section style={{ padding: '4rem 0 6rem 0', backgroundColor: 'var(--bg-dark)' }}>
-        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
+      {/* 2. SPLIT GALLERY SECTION (LEFT CONTENT, RIGHT 6-PHOTO GRID) */}
+      <section style={{ padding: '5rem 0 6rem 0', backgroundColor: 'var(--bg-dark)' }}>
+        <div className="container" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 1.5rem' }}>
           
-          {/* Category Filter Chips */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.75rem',
-              flexWrap: 'wrap',
-              marginBottom: '3.5rem'
-            }}
-          >
-            {galleryCategoriesData.map((cat) => {
-              const isActive = activeCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => {
-                    setActiveCategory(cat.id);
-                    setLightboxIndex(null);
-                  }}
-                  style={{
-                    padding: '0.65rem 1.6rem',
-                    borderRadius: '50px',
-                    fontSize: '0.88rem',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    border: isActive ? '1px solid var(--accent)' : '1px solid rgba(255, 255, 255, 0.1)',
-                    backgroundColor: isActive ? 'var(--accent)' : 'rgba(20, 28, 36, 0.6)',
-                    color: isActive ? '#0A0D10' : '#E0ECEE',
-                    boxShadow: isActive ? '0 0 20px rgba(0, 210, 180, 0.3)' : 'none'
-                  }}
-                >
-                  {cat.name}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Responsive Image Grid (3 desktop, 2 tablet, 1 mobile) */}
-          <div className="clean-gallery-grid">
-            {filteredGallery.map((item, idx) => (
-              <div
-                key={item.id}
-                onClick={() => setLightboxIndex(idx)}
-                className="gallery-card-wrapper"
+          <div className="gallery-split-layout">
+            
+            {/* LEFT CONTENT SECTION */}
+            <div className="gallery-left-content">
+              <span className="section-tag" style={{ justifyContent: 'flex-start', marginBottom: '0.75rem' }}>
+                LUXURY FINE DINING SANCTUARY
+              </span>
+              
+              <h2
+                style={{
+                  fontFamily: 'var(--font-serif)',
+                  fontSize: 'clamp(2rem, 3.5vw, 2.6rem)',
+                  color: '#FFFFFF',
+                  lineHeight: 1.25,
+                  marginBottom: '1.25rem'
+                }}
               >
-                <div className="gallery-card-inner">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="gallery-card-img"
-                    loading="lazy"
-                  />
-                  {/* Subtle Hover Overlay */}
-                  <div className="gallery-card-overlay">
-                    <div className="gallery-card-icon">
-                      <Maximize2 size={18} color="var(--accent)" />
+                Immerse Yourself In The Asian Table Experience
+              </h2>
+
+              <p
+                style={{
+                  color: 'var(--text-muted)',
+                  fontSize: '1.02rem',
+                  lineHeight: 1.8,
+                  marginBottom: '2rem'
+                }}
+              >
+                Stepping into The Asian Table is an invitation to indulge your senses. From warm mahogany architectural lattice work to private dining alcoves bathed in amber light, every detail is crafted to offer a tranquil escape and unforgettable dining moments.
+              </p>
+
+              {/* HIGHLIGHTS BULLETS */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginBottom: '2.5rem' }}>
+                {highlights.map((item, index) => {
+                  const IconComp = item.icon;
+                  return (
+                    <div
+                      key={index}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '1rem',
+                        backgroundColor: '#0F151C',
+                        padding: '1rem 1.25rem',
+                        borderRadius: '10px',
+                        border: '1px solid var(--border-light)'
+                      }}
+                    >
+                      <div
+                        style={{
+                          padding: '0.6rem',
+                          borderRadius: '50%',
+                          backgroundColor: 'rgba(0, 210, 180, 0.15)',
+                          border: '1px solid var(--accent)',
+                          color: 'var(--accent)',
+                          flexShrink: 0
+                        }}
+                      >
+                        <IconComp size={18} />
+                      </div>
+                      <div>
+                        <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', color: '#FFFFFF', margin: '0 0 2px 0' }}>
+                          {item.title}
+                        </h4>
+                        <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', margin: 0, lineHeight: 1.5 }}>
+                          {item.desc}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <span className="gallery-card-cat">{item.category}</span>
-                      <h3 className="gallery-card-title">{item.title}</h3>
+                  );
+                })}
+              </div>
+
+              <NavLink to="/contact" className="btn btn-teal" style={{ padding: '0.95rem 2rem', display: 'inline-flex' }}>
+                <span>Reserve Your Table</span>
+              </NavLink>
+            </div>
+
+            {/* RIGHT 6-PHOTO GRID SECTION */}
+            <div className="gallery-right-grid">
+              {displayGallery.map((item, idx) => (
+                <div
+                  key={item.id || idx}
+                  onClick={() => setLightboxIndex(idx)}
+                  className="gallery-card-wrapper"
+                >
+                  <div className="gallery-card-inner">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="gallery-card-img"
+                      loading="lazy"
+                    />
+                    <div className="gallery-card-overlay">
+                      <div className="gallery-card-icon">
+                        <Maximize2 size={16} color="var(--accent)" />
+                      </div>
+                      <div>
+                        <span className="gallery-card-cat">{item.category}</span>
+                        <h3 className="gallery-card-title">{item.title}</h3>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
           </div>
 
         </div>
@@ -248,7 +281,7 @@ const GalleryPage = () => {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              setLightboxIndex((prev) => (prev > 0 ? prev - 1 : filteredGallery.length - 1));
+              setLightboxIndex((prev) => (prev > 0 ? prev - 1 : displayGallery.length - 1));
             }}
             style={{
               position: 'absolute',
@@ -313,7 +346,7 @@ const GalleryPage = () => {
                 </span>
                 <span style={{ color: 'rgba(255, 255, 255, 0.2)' }}>•</span>
                 <span style={{ fontSize: '0.78rem', color: 'var(--accent-gold)' }}>
-                  {lightboxIndex + 1} of {filteredGallery.length}
+                  {lightboxIndex + 1} of {displayGallery.length}
                 </span>
               </div>
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', color: '#FFFFFF', margin: 0 }}>
@@ -329,7 +362,7 @@ const GalleryPage = () => {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              setLightboxIndex((prev) => (prev < filteredGallery.length - 1 ? prev + 1 : 0));
+              setLightboxIndex((prev) => (prev < displayGallery.length - 1 ? prev + 1 : 0));
             }}
             style={{
               position: 'absolute',
@@ -353,12 +386,19 @@ const GalleryPage = () => {
         </div>
       )}
 
-      {/* Embedded Clean Grid CSS */}
+      {/* Embedded CSS for Split Layout */}
       <style>{`
-        .clean-gallery-grid {
+        .gallery-split-layout {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 2rem;
+          grid-template-columns: 1fr 1.2fr;
+          gap: 3.5rem;
+          align-items: center;
+        }
+
+        .gallery-right-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
         }
 
         .gallery-card-wrapper {
@@ -371,7 +411,8 @@ const GalleryPage = () => {
         }
 
         .gallery-card-wrapper:hover {
-          box-shadow: 0 12px 30px rgba(0, 210, 180, 0.15);
+          box-shadow: 0 12px 30px rgba(0, 210, 180, 0.18);
+          transform: translateY(-4px);
         }
 
         .gallery-card-inner {
@@ -390,19 +431,19 @@ const GalleryPage = () => {
         }
 
         .gallery-card-wrapper:hover .gallery-card-img {
-          transform: scale(1.05);
+          transform: scale(1.06);
         }
 
         .gallery-card-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, rgba(10, 13, 16, 0) 30%, rgba(10, 13, 16, 0.88) 100%);
+          background: linear-gradient(180deg, rgba(10, 13, 16, 0) 25%, rgba(10, 13, 16, 0.9) 100%);
           opacity: 0;
           transition: opacity 0.35s ease;
-          padding: 1.5rem;
+          padding: 1.25rem;
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
+          justifyContent: space-between;
         }
 
         .gallery-card-wrapper:hover .gallery-card-overlay {
@@ -411,42 +452,42 @@ const GalleryPage = () => {
 
         .gallery-card-icon {
           align-self: flex-end;
-          width: 36px;
-          height: 36px;
+          width: 34px;
+          height: 34px;
           border-radius: 50%;
-          background-color: rgba(10, 13, 16, 0.75);
+          background-color: rgba(10, 13, 16, 0.8);
           border: 1px solid var(--accent);
           display: flex;
           align-items: center;
-          justify-content: center;
+          justifyContent: center;
         }
 
         .gallery-card-cat {
-          font-size: 0.72rem;
+          font-size: 0.7rem;
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.14em;
           color: var(--accent);
           display: block;
-          margin-bottom: 4px;
+          margin-bottom: 2px;
         }
 
         .gallery-card-title {
           font-family: var(--font-serif);
-          font-size: 1.15rem;
+          font-size: 1.05rem;
           color: #FFFFFF;
           margin: 0;
         }
 
         @media (max-width: 992px) {
-          .clean-gallery-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
+          .gallery-split-layout {
+            grid-template-columns: 1fr;
+            gap: 3rem;
           }
         }
 
         @media (max-width: 576px) {
-          .clean-gallery-grid {
+          .gallery-right-grid {
             grid-template-columns: 1fr;
             gap: 1.25rem;
           }
