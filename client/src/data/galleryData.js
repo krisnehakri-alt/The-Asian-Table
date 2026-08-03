@@ -1,14 +1,12 @@
 // Static Gallery Dataset for THE ASIAN TABLE - Restaurant Ambience & Interiors (No Food Items)
 
 import restaurantInteriorMain from '../assets/restaurant_interior_main.png';
-import restaurantBarLounge from '../assets/restaurant_bar_lounge.png';
 import restaurantPrivateVip from '../assets/restaurant_private_vip.png';
 
 export const galleryCategoriesData = [
   { id: 'all', name: 'All Views' },
   { id: 'interior', name: 'Main Dining & Booths' },
   { id: 'ambience', name: 'VIP & Private Alcoves' },
-  { id: 'lounge', name: 'Cocktail Bar & Lounge' },
   { id: 'terrace', name: 'Garden Terrace & Patio' }
 ];
 
@@ -26,13 +24,6 @@ export const galleryImagesData = [
     category: 'ambience',
     image: restaurantPrivateVip,
     description: 'Exclusive round banquet table with custom Asian mahogany lattice work and silk wallpaper.'
-  },
-  {
-    id: 'g3',
-    title: 'Gold Star Cocktail Lounge',
-    category: 'lounge',
-    image: restaurantBarLounge,
-    description: 'Artisanal bar counter with illuminated gold liquor display and plush teal velvet stools.'
   },
   {
     id: 'g4',
@@ -63,25 +54,11 @@ export const galleryImagesData = [
     description: 'Grand entrance hallway lit by hand-blown glass teal star lanterns.'
   },
   {
-    id: 'g8',
-    title: 'Zen Bamboo Garden Terrace',
-    category: 'terrace',
-    image: 'https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&q=80&w=1200',
-    description: 'Outdoor courtyard seating surrounded by bamboo foliage, soft lanterns, and water features.'
-  },
-  {
     id: 'g9',
     title: 'Amber Mood Dining Booths',
     category: 'interior',
     image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=1200',
     description: 'Warm lighting and dark wood privacy booths crafted for elegant dining experiences.'
-  },
-  {
-    id: 'g10',
-    title: 'Sake & Spirits Tasting Bar',
-    category: 'lounge',
-    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&q=80&w=1200',
-    description: 'High-end mixology bar featuring rare Asian spirits and botanical tea infusions.'
   },
   {
     id: 'g11',
@@ -110,12 +87,5 @@ export const galleryImagesData = [
     category: 'ambience',
     image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=1200',
     description: 'Luxury private dining room tailored for corporate dinners and anniversary celebrations.'
-  },
-  {
-    id: 'g15',
-    title: 'Evening Ambiance Lounge',
-    category: 'lounge',
-    image: 'https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?auto=format&fit=crop&q=80&w=1200',
-    description: 'Cozy lounge seating area with amber pendant lights and discreet service.'
   }
 ];
