@@ -35,23 +35,6 @@ const BranchCard = ({ branch, showReservationTiming = false }) => {
           }}
         />
         <div style={{ position: 'absolute', bottom: '1rem', left: '1.25rem', right: '1.25rem' }}>
-          <span
-            style={{
-              fontSize: '0.72rem',
-              fontWeight: 600,
-              textTransform: 'uppercase',
-              letterSpacing: '0.15em',
-              color: '#0A0D10',
-              backgroundColor: 'var(--accent)',
-              padding: '0.25rem 0.65rem',
-              borderRadius: '4px',
-              display: 'inline-block',
-              marginBottom: '0.35rem',
-              boxShadow: '0 2px 8px rgba(0, 210, 180, 0.3)'
-            }}
-          >
-            Branch Location
-          </span>
           <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.35rem', color: '#FFFFFF', lineHeight: 1.2 }}>
             {branch.name}
           </h3>
