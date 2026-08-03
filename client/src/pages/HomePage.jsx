@@ -23,17 +23,17 @@ import {
   featuredHighlightsData,
   signatureDishesData,
   accoladesData,
-  customerReviewsData,
-  branchData,
   chefData
 } from '../data/restaurantData';
+import { useData } from '../context/DataContext';
 import TestimonialCard from '../components/TestimonialCard';
 import ReservationModal from '../components/ReservationModal';
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const { reviews: customerReviewsData, branches: branchData } = useData();
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedBranchId, setSelectedBranchId] = useState('downtown');
+  const [selectedBranchId, setSelectedBranchId] = useState(branchData[0]?.id || 'downtown');
   const [isReservationOpen, setIsReservationOpen] = useState(false);
 
   // Categories list

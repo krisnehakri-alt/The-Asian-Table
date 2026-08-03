@@ -1,11 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Phone, Clock, CalendarCheck, MapPin, Mail, Sparkles } from 'lucide-react';
-import { images, branchData } from '../data/restaurantData';
+import { images } from '../data/restaurantData';
+import { useData } from '../context/DataContext';
 import BranchCard from '../components/BranchCard';
 import ContactForm from '../components/ContactForm';
+import GoogleMapSection from '../components/GoogleMapSection';
 
 const ContactPage = () => {
+  const { branches } = useData();
+
   return (
     <div style={{ overflowX: 'hidden', backgroundColor: 'var(--bg-cream)' }}>
       {/* 1. HERO BANNER */}
@@ -70,7 +74,7 @@ const ContactPage = () => {
               gap: '1.5rem'
             }}
           >
-            {branchData.map((branch) => (
+            {branches.map((branch) => (
               <div
                 key={branch.id}
                 style={{
@@ -88,7 +92,7 @@ const ContactPage = () => {
                 <div style={{ margin: '0.75rem 0', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
                   <Phone size={20} color="var(--accent)" />
                   <a
-                    href={`tel:${branch.reservationPhone}`}
+                    href={`tel:${branch.reservationPhone || branch.phone}`}
                     style={{
                       fontFamily: 'var(--font-serif)',
                       fontSize: '1.35rem',
@@ -97,7 +101,7 @@ const ContactPage = () => {
                       textDecoration: 'none'
                     }}
                   >
-                    {branch.reservationPhone}
+                    {branch.reservationPhone || branch.phone}
                   </a>
                 </div>
                 <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
@@ -170,14 +174,17 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* 4. RESTAURANT BRANCH CARDS */}
+      {/* 4. GOOGLE MAP INTEGRATION */}
+      <GoogleMapSection />
+
+      {/* 5. RESTAURANT BRANCH CARDS */}
       <section className="section-padding bg-dark" style={{ borderTop: '1px solid rgba(0, 210, 180, 0.15)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
             <span className="section-tag">Locations & Timings</span>
             <h2 className="section-title">Restaurant Branch Locations</h2>
             <p className="section-subtitle">
-              Explore our three luxury branch locations along with their detailed addresses and reservation timings.
+              Explore our luxury branch locations along with their detailed addresses and reservation timings.
             </p>
           </div>
 
@@ -188,7 +195,7 @@ const ContactPage = () => {
               gap: '2rem'
             }}
           >
-            {branchData.map((branch) => (
+            {branches.map((branch) => (
               <BranchCard key={branch.id} branch={branch} showReservationTiming={true} />
             ))}
           </div>

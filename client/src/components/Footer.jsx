@@ -1,9 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Mail, Phone, MapPin, Instagram, Facebook, Twitter, Award, Sparkles } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, Facebook, Twitter, Award, Sparkles, Clock } from 'lucide-react';
+import { useData } from '../context/DataContext';
 import logo from '../assets/logo.png';
 
 const Footer = () => {
+  const { settings } = useData();
+
   return (
     <footer style={{ backgroundColor: '#07090C', color: '#E0ECEE', borderTop: '1px solid rgba(0, 210, 180, 0.25)' }}>
       <div className="container" style={{ padding: '5rem 1.5rem 3rem 1.5rem' }}>

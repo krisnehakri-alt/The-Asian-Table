@@ -21,10 +21,12 @@ import {
   chefsRecommendationData
 } from '../data/menuData';
 import { images } from '../data/restaurantData';
+import { useData } from '../context/DataContext';
 import ReservationModal from '../components/ReservationModal';
 
 const MenuPage = () => {
   const navigate = useNavigate();
+  const { menuItems: menuItemsData, menuCategories: menuCategoriesData, chefRecommendation: chefsRecommendationData } = useData();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('all');
   const [isReservationOpen, setIsReservationOpen] = useState(false);

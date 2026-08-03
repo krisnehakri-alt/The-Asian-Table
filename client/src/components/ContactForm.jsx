@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, User, Mail, Phone, MessageSquare } from 'lucide-react';
+import { Send, CheckCircle2, User, Mail, Phone, MessageSquare, FileText } from 'lucide-react';
+import { useData } from '../context/DataContext';
 
 const ContactForm = () => {
+  const { addMessage } = useData();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     phone: '',
+    subject: 'General Inquiry',
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
@@ -17,11 +20,18 @@ const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    addMessage({
+      name: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      subject: formData.subject,
+      message: formData.message
+    });
     setSubmitted(true);
   };
 
   const handleReset = () => {
-    setFormData({ fullName: '', email: '', phone: '', message: '' });
+    setFormData({ fullName: '', email: '', phone: '', subject: 'General Inquiry', message: '' });
     setSubmitted(false);
   };
 
@@ -76,7 +86,7 @@ const ContactForm = () => {
             Thank You, {formData.fullName || 'Guest'}!
           </h4>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', maxWidth: '420px', margin: '0 auto 1.5rem auto' }}>
-            Your message has been received. Our hospitality team will get in touch with you shortly.
+            Your message has been saved to our inbox. Our concierge team will get in touch with you shortly.
           </p>
           <button onClick={handleReset} className="btn btn-outline-teal" style={{ padding: '0.6rem 1.4rem', fontSize: '0.88rem' }}>
             Send Another Message
@@ -114,14 +124,6 @@ const ContactForm = () => {
                   transition: 'all 0.25s ease',
                   fontFamily: 'var(--font-sans)'
                 }}
-                onFocus={(e) => {
-                  e.target.style.borderColor = 'var(--accent)';
-                  e.target.style.boxShadow = '0 0 10px rgba(0, 210, 180, 0.25)';
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = 'var(--border-subtle)';
-                  e.target.style.boxShadow = 'none';
-                }}
               />
             </div>
           </div>
@@ -158,14 +160,6 @@ const ContactForm = () => {
                     transition: 'all 0.25s ease',
                     fontFamily: 'var(--font-sans)'
                   }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = 'var(--accent)';
-                    e.target.style.boxShadow = '0 0 10px rgba(0, 210, 180, 0.25)';
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = 'var(--border-subtle)';
-                    e.target.style.boxShadow = 'none';
-                  }}
                 />
               </div>
             </div>
@@ -200,16 +194,42 @@ const ContactForm = () => {
                     transition: 'all 0.25s ease',
                     fontFamily: 'var(--font-sans)'
                   }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = 'var(--accent)';
-                    e.target.style.boxShadow = '0 0 10px rgba(0, 210, 180, 0.25)';
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = 'var(--border-subtle)';
-                    e.target.style.boxShadow = 'none';
-                  }}
                 />
               </div>
+            </div>
+          </div>
+
+          {/* Subject */}
+          <div>
+            <label
+              htmlFor="subject"
+              style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: '#FFFFFF', marginBottom: '0.5rem' }}
+            >
+              Subject *
+            </label>
+            <div style={{ position: 'relative' }}>
+              <FileText size={18} color="var(--accent)" style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)' }} />
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                required
+                placeholder="e.g. Private VIP Suite Reservation"
+                value={formData.subject}
+                onChange={handleChange}
+                style={{
+                  width: '100%',
+                  padding: '0.85rem 1rem 0.85rem 2.8rem',
+                  fontSize: '0.95rem',
+                  borderRadius: '6px',
+                  border: '1px solid var(--border-subtle)',
+                  backgroundColor: '#0A0D10',
+                  color: '#FFFFFF',
+                  outline: 'none',
+                  transition: 'all 0.25s ease',
+                  fontFamily: 'var(--font-sans)'
+                }}
+              />
             </div>
           </div>
 
@@ -243,14 +263,6 @@ const ContactForm = () => {
                   transition: 'all 0.25s ease',
                   fontFamily: 'var(--font-sans)',
                   resize: 'vertical'
-                }}
-                onFocus={(e) => {
-                  e.target.style.borderColor = 'var(--accent)';
-                  e.target.style.boxShadow = '0 0 10px rgba(0, 210, 180, 0.25)';
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = 'var(--border-subtle)';
-                  e.target.style.boxShadow = 'none';
                 }}
               />
             </div>

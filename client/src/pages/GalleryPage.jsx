@@ -12,8 +12,10 @@ import {
   galleryImagesData
 } from '../data/galleryData';
 import { images } from '../data/restaurantData';
+import { useData } from '../context/DataContext';
 
 const GalleryPage = () => {
+  const { galleryImages: galleryImagesData, galleryCategories: galleryCategoriesData } = useData();
   const [activeCategory, setActiveCategory] = useState('all');
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
@@ -21,7 +23,7 @@ const GalleryPage = () => {
   const filteredGallery = useMemo(() => {
     if (activeCategory === 'all') return galleryImagesData;
     return galleryImagesData.filter((item) => item.category === activeCategory);
-  }, [activeCategory]);
+  }, [activeCategory, galleryImagesData]);
 
   // Lightbox Keyboard Navigation (Escape, ArrowLeft, ArrowRight)
   useEffect(() => {
