@@ -191,31 +191,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* 4. BRANCHES SECTION */}
-      <section className="section-padding bg-dark" style={{ borderTop: '1px solid rgba(0, 210, 180, 0.15)', borderBottom: '1px solid rgba(0, 210, 180, 0.15)' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <span className="section-tag">Sanctuaries Of Dining</span>
-            <h2 className="section-title">Our Flagship Branches</h2>
-            <p className="section-subtitle">
-              Each branch offers a distinct architectural ambiance while delivering the identical gold standard of Asian cuisine.
-            </p>
-          </div>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '2rem'
-            }}
-          >
-            {branchData.map((branch) => (
-              <BranchCard key={branch.id} branch={branch} showReservationTiming={false} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* 5. MEET OUR CHEF SECTION */}
       <section className="section-padding bg-secondary">
         <div className="container">
