@@ -16,9 +16,13 @@ const OpenStreetMapSection = () => {
   const lat = 40.7484;
   const lon = -73.9857;
 
+  // Calculate dynamic bounding box delta based on zoomLevel state
+  // High zoom = small delta (zoomed in), Low zoom = larger delta (zoomed out)
+  const delta = 0.25 / Math.pow(2, zoomLevel - 10);
+
   // OpenStreetMap embed URL & Directions link
-  const embedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${lon - 0.008}%2C${lat - 0.008}%2C${lon + 0.008}%2C${lat + 0.008}&layer=mapnik&marker=${lat}%2C${lon}`;
-  const directionsUrl = `https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=%3B${lat}%2C${lon}#map=15/${lat}/${lon}`;
+  const embedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${lon - delta}%2C${lat - delta}%2C${lon + delta}%2C${lat + delta}&layer=mapnik&marker=${lat}%2C${lon}`;
+  const directionsUrl = `https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=%3B${lat}%2C${lon}#map=${zoomLevel}/${lat}/${lon}`;
 
   return (
     <section style={{ backgroundColor: 'var(--primary)', padding: '4rem 0', borderTop: '1px solid rgba(0, 210, 180, 0.15)' }}>
