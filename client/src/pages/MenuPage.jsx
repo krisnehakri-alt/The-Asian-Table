@@ -23,6 +23,7 @@ import {
 import { images } from '../data/restaurantData';
 import { useData } from '../context/DataContext';
 import ReservationModal from '../components/ReservationModal';
+import OrderDishModal from '../components/OrderDishModal';
 
 const MenuPage = () => {
   const navigate = useNavigate();
@@ -30,6 +31,13 @@ const MenuPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('all');
   const [isReservationOpen, setIsReservationOpen] = useState(false);
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+  const [selectedOrderDish, setSelectedOrderDish] = useState(null);
+
+  const handleOrderDishClick = (dish) => {
+    setSelectedOrderDish(dish);
+    setIsOrderModalOpen(true);
+  };
 
   const handleSearchSubmit = (e) => {
     if (e) e.preventDefault();
@@ -735,7 +743,7 @@ const MenuPage = () => {
                               </span>
 
                               <button
-                                onClick={() => setIsReservationOpen(true)}
+                                onClick={() => handleOrderDishClick(dish)}
                                 className="btn btn-outline-teal"
                                 style={{ padding: '0.45rem 0.95rem', fontSize: '0.82rem' }}
                               >
@@ -877,6 +885,10 @@ const MenuPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Modals */}
+      <ReservationModal isOpen={isReservationOpen} onClose={() => setIsReservationOpen(false)} />
+      <OrderDishModal isOpen={isOrderModalOpen} onClose={() => setIsOrderModalOpen(false)} selectedDish={selectedOrderDish} />
     </div>
   );
 };

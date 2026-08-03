@@ -28,6 +28,7 @@ import {
 import { useData } from '../context/DataContext';
 import TestimonialCard from '../components/TestimonialCard';
 import ReservationModal from '../components/ReservationModal';
+import OrderDishModal from '../components/OrderDishModal';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -35,6 +36,13 @@ const HomePage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedBranchId, setSelectedBranchId] = useState(branchData[0]?.id || 'downtown');
   const [isReservationOpen, setIsReservationOpen] = useState(false);
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+  const [selectedOrderDish, setSelectedOrderDish] = useState(null);
+
+  const handleOrderDishClick = (dish) => {
+    setSelectedOrderDish(dish);
+    setIsOrderModalOpen(true);
+  };
 
   // Categories list
   const categories = ['All', 'Asian Noodles', 'Asian Rice', 'Dimsum & Momos', 'Special Asian'];
@@ -463,7 +471,7 @@ const HomePage = () => {
                     </div>
 
                     <button
-                      onClick={() => setIsReservationOpen(true)}
+                      onClick={() => handleOrderDishClick(dish)}
                       style={{
                         background: 'transparent',
                         border: 'none',
@@ -844,6 +852,10 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {/* Modals */}
+      <ReservationModal isOpen={isReservationOpen} onClose={() => setIsReservationOpen(false)} />
+      <OrderDishModal isOpen={isOrderModalOpen} onClose={() => setIsOrderModalOpen(false)} selectedDish={selectedOrderDish} />
     </div>
   );
 };
