@@ -32,7 +32,7 @@ export const menuCategoriesData = [
   },
   {
     id: 'special-asian',
-    name: 'Special Asian',
+    name: 'Customer Favorites ❤️',
     icon: '⭐',
     iconName: 'Sparkles',
     isSpecial: true,
@@ -341,7 +341,7 @@ export const menuItemsData = [
   {
     id: 'veg-manchurian',
     name: 'Veg Manchurian',
-    category: 'Special Asian',
+    category: 'Customer Favorites ❤️',
     categoryId: 'special-asian',
     price: '$24.00',
     isVeg: true,
@@ -353,7 +353,7 @@ export const menuItemsData = [
   {
     id: 'chicken-manchurian',
     name: 'Chicken Manchurian',
-    category: 'Special Asian',
+    category: 'Customer Favorites ❤️',
     categoryId: 'special-asian',
     price: '$28.00',
     isVeg: false,
@@ -365,7 +365,7 @@ export const menuItemsData = [
   {
     id: 'chilli-chicken',
     name: 'Chilli Chicken',
-    category: 'Special Asian',
+    category: 'Customer Favorites ❤️',
     categoryId: 'special-asian',
     price: '$29.00',
     isVeg: false,
@@ -377,7 +377,7 @@ export const menuItemsData = [
   {
     id: 'dragon-chicken',
     name: 'Dragon Chicken',
-    category: 'Special Asian',
+    category: 'Customer Favorites ❤️',
     categoryId: 'special-asian',
     price: '$31.00',
     isVeg: false,
@@ -389,7 +389,7 @@ export const menuItemsData = [
   {
     id: 'paneer-chilli-dry',
     name: 'Paneer Chilli Dry',
-    category: 'Special Asian',
+    category: 'Customer Favorites ❤️',
     categoryId: 'special-asian',
     price: '$25.00',
     isVeg: true,
@@ -401,7 +401,7 @@ export const menuItemsData = [
   {
     id: 'crispy-honey-chilli-potato',
     name: 'Crispy Honey Chilli Potato',
-    category: 'Special Asian',
+    category: 'Customer Favorites ❤️',
     categoryId: 'special-asian',
     price: '$22.00',
     isVeg: true,
@@ -413,7 +413,7 @@ export const menuItemsData = [
   {
     id: 'kung-pao-chicken',
     name: 'Kung Pao Chicken',
-    category: 'Special Asian',
+    category: 'Customer Favorites ❤️',
     categoryId: 'special-asian',
     price: '$30.00',
     isVeg: false,
@@ -425,7 +425,7 @@ export const menuItemsData = [
   {
     id: 'thai-green-curry',
     name: 'Thai Green Curry',
-    category: 'Special Asian',
+    category: 'Customer Favorites ❤️',
     categoryId: 'special-asian',
     price: '$29.00',
     isVeg: true,
@@ -437,7 +437,7 @@ export const menuItemsData = [
   {
     id: 'teriyaki-chicken',
     name: 'Teriyaki Chicken',
-    category: 'Special Asian',
+    category: 'Customer Favorites ❤️',
     categoryId: 'special-asian',
     price: '$28.00',
     isVeg: false,
@@ -449,7 +449,7 @@ export const menuItemsData = [
   {
     id: 'hot-garlic-chicken',
     name: 'Hot Garlic Chicken',
-    category: 'Special Asian',
+    category: 'Customer Favorites ❤️',
     categoryId: 'special-asian',
     price: '$29.00',
     isVeg: false,

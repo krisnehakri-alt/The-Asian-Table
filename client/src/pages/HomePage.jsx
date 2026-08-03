@@ -45,7 +45,7 @@ const HomePage = () => {
   };
 
   // Categories list
-  const categories = ['All', 'Asian Noodles', 'Asian Rice', 'Dimsum & Momos', 'Special Asian'];
+  const categories = ['All', 'Asian Noodles', 'Asian Rice', 'Dimsum & Momos', 'Customer Favorites ❤️'];
 
   const filteredDishes = selectedCategory === 'All'
     ? signatureDishesData

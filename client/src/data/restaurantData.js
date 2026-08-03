@@ -82,18 +82,18 @@ export const signatureDishesData = [
   {
     id: 'veg-manchurian',
     name: 'Veg Manchurian',
-    category: 'Special Asian',
+    category: 'Customer Favorites ❤️',
     price: '$28.00',
-    tags: ['Special Asian', 'Premium Dish'],
+    tags: ['Customer Favorites ❤️', 'Premium Dish'],
     description: 'Crispy vegetable dumplings tossed in a rich, tangy garlic soy and spring onion glaze.',
     image: 'https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: 'chicken-manchurian',
     name: 'Chicken Manchurian',
-    category: 'Special Asian',
+    category: 'Customer Favorites ❤️',
     price: '$34.00',
-    tags: ['Special Asian', 'Chef Signature'],
+    tags: ['Customer Favorites ❤️', 'Chef Signature'],
     description: 'Tender chicken bites wok-tossed in dark soy sauce, fresh ginger, chili peppers, and coriander.',
     image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&q=80&w=800'
   },
