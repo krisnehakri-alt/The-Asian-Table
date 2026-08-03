@@ -94,31 +94,6 @@ const ContactPage = () => {
 
       {/* 4. GOOGLE MAP INTEGRATION */}
       <GoogleMapSection />
-
-      {/* 5. RESTAURANT BRANCH CARDS */}
-      <section className="section-padding bg-dark" style={{ borderTop: '1px solid rgba(0, 210, 180, 0.15)' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <span className="section-tag">Locations & Timings</span>
-            <h2 className="section-title">Restaurant Branch Locations</h2>
-            <p className="section-subtitle">
-              Explore our luxury branch locations along with their detailed addresses and reservation timings.
-            </p>
-          </div>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '2rem'
-            }}
-          >
-            {branches.map((branch) => (
-              <BranchCard key={branch.id} branch={branch} showReservationTiming={true} />
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
