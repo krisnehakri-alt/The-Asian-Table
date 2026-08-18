@@ -29,6 +29,7 @@ import { useData } from '../context/DataContext';
 import TestimonialCard from '../components/TestimonialCard';
 import ReservationModal from '../components/ReservationModal';
 import OrderDishModal from '../components/OrderDishModal';
+import FoodDetailsModal from '../components/FoodDetailsModal';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -38,10 +39,17 @@ const HomePage = () => {
   const [isReservationOpen, setIsReservationOpen] = useState(false);
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
   const [selectedOrderDish, setSelectedOrderDish] = useState(null);
+  const [isFoodDetailsOpen, setIsFoodDetailsOpen] = useState(false);
+  const [selectedFoodDetail, setSelectedFoodDetail] = useState(null);
 
   const handleOrderDishClick = (dish) => {
     setSelectedOrderDish(dish);
     setIsOrderModalOpen(true);
+  };
+
+  const handleFoodDetailClick = (dish) => {
+    setSelectedFoodDetail(dish);
+    setIsFoodDetailsOpen(true);
   };
 
   // Categories list
@@ -376,6 +384,7 @@ const HomePage = () => {
               <div
                 key={dish.id}
                 className="hover-lift"
+                onClick={() => handleFoodDetailClick(dish)}
                 style={{
                   backgroundColor: 'var(--bg-white)',
                   borderRadius: '12px',
@@ -383,7 +392,8 @@ const HomePage = () => {
                   border: '1px solid var(--border-light)',
                   boxShadow: 'var(--shadow-md)',
                   display: 'flex',
-                  flexDirection: 'column'
+                  flexDirection: 'column',
+                  cursor: 'pointer'
                 }}
               >
                 <div style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
@@ -471,7 +481,10 @@ const HomePage = () => {
                     </div>
 
                     <button
-                      onClick={() => handleOrderDishClick(dish)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleOrderDishClick(dish);
+                      }}
                       style={{
                         background: 'transparent',
                         border: 'none',
@@ -823,6 +836,7 @@ const HomePage = () => {
       {/* Modals */}
       <ReservationModal isOpen={isReservationOpen} onClose={() => setIsReservationOpen(false)} />
       <OrderDishModal isOpen={isOrderModalOpen} onClose={() => setIsOrderModalOpen(false)} selectedDish={selectedOrderDish} />
+      <FoodDetailsModal isOpen={isFoodDetailsOpen} onClose={() => setIsFoodDetailsOpen(false)} food={selectedFoodDetail} onOrderDish={handleOrderDishClick} />
     </div>
   );
 };

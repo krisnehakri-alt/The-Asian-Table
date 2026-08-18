@@ -24,6 +24,7 @@ import { images } from '../data/restaurantData';
 import { useData } from '../context/DataContext';
 import ReservationModal from '../components/ReservationModal';
 import OrderDishModal from '../components/OrderDishModal';
+import FoodDetailsModal from '../components/FoodDetailsModal';
 
 const MenuPage = () => {
   const navigate = useNavigate();
@@ -33,10 +34,17 @@ const MenuPage = () => {
   const [isReservationOpen, setIsReservationOpen] = useState(false);
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
   const [selectedOrderDish, setSelectedOrderDish] = useState(null);
+  const [isFoodDetailsOpen, setIsFoodDetailsOpen] = useState(false);
+  const [selectedFoodDetail, setSelectedFoodDetail] = useState(null);
 
   const handleOrderDishClick = (dish) => {
     setSelectedOrderDish(dish);
     setIsOrderModalOpen(true);
+  };
+
+  const handleFoodDetailClick = (dish) => {
+    setSelectedFoodDetail(dish);
+    setIsFoodDetailsOpen(true);
   };
 
   const handleSearchSubmit = (e) => {
@@ -596,6 +604,7 @@ const MenuPage = () => {
                         <div
                           key={dish.id}
                           className="hover-lift"
+                          onClick={() => handleFoodDetailClick(dish)}
                           style={{
                             backgroundColor: 'var(--bg-white)',
                             borderRadius: '12px',
@@ -605,7 +614,8 @@ const MenuPage = () => {
                               : '1px solid var(--border-light)',
                             boxShadow: 'var(--shadow-md)',
                             display: 'flex',
-                            flexDirection: 'column'
+                            flexDirection: 'column',
+                            cursor: 'pointer'
                           }}
                         >
                           {/* Dish HD Image Header */}
@@ -743,7 +753,10 @@ const MenuPage = () => {
                               </span>
 
                               <button
-                                onClick={() => handleOrderDishClick(dish)}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleOrderDishClick(dish);
+                                }}
                                 className="btn btn-outline-teal"
                                 style={{ padding: '0.45rem 0.95rem', fontSize: '0.82rem' }}
                               >
@@ -831,11 +844,29 @@ const MenuPage = () => {
                 {chefsRecommendationData.story}
               </p>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap' }}>
+                <button
+                  onClick={() => handleFoodDetailClick({
+                    name: chefsRecommendationData.name,
+                    price: chefsRecommendationData.price,
+                    image: chefsRecommendationData.image,
+                    description: chefsRecommendationData.story,
+                    category: "Chef's Special",
+                    isChefRecommended: true,
+                    rating: 4.9,
+                    ratingCount: 240
+                  })}
+                  className="btn btn-teal"
+                  style={{ padding: '0.9rem 1.8rem' }}
+                >
+                  <UtensilsCrossed size={18} />
+                  <span>View Details</span>
+                </button>
+
                 <button
                   onClick={() => setIsReservationOpen(true)}
                   className="btn btn-warm-gold"
-                  style={{ padding: '1rem 2.2rem' }}
+                  style={{ padding: '0.9rem 1.8rem' }}
                 >
                   <PhoneCall size={18} />
                   <span>Reserve Table</span>
@@ -889,6 +920,7 @@ const MenuPage = () => {
       {/* Modals */}
       <ReservationModal isOpen={isReservationOpen} onClose={() => setIsReservationOpen(false)} />
       <OrderDishModal isOpen={isOrderModalOpen} onClose={() => setIsOrderModalOpen(false)} selectedDish={selectedOrderDish} />
+      <FoodDetailsModal isOpen={isFoodDetailsOpen} onClose={() => setIsFoodDetailsOpen(false)} food={selectedFoodDetail} onOrderDish={handleOrderDishClick} />
     </div>
   );
 };
