@@ -5,7 +5,6 @@ import { images } from '../data/restaurantData';
 import { useData } from '../context/DataContext';
 import BranchCard from '../components/BranchCard';
 import ContactForm from '../components/ContactForm';
-import OpenStreetMapSection from '../components/OpenStreetMapSection';
 
 const ContactPage = () => {
   const { branches } = useData();
@@ -92,8 +91,6 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* 4. OPEN STREET MAP INTEGRATION */}
-      <OpenStreetMapSection />
     </div>
   );
 };
