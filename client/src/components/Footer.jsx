@@ -279,7 +279,7 @@ const Footer = () => {
             color: '#718590'
           }}
         >
-          <p>© 2026 THE ASIAN TABLE. All Rights Reserved.</p>
+          <p>© 2026 <NavLink to="/admin" style={{ color: 'inherit', textDecoration: 'none' }}>THE ASIAN TABLE</NavLink>. All Rights Reserved.</p>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
             <NavLink
               to="/privacy"

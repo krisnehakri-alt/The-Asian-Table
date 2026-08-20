@@ -119,8 +119,8 @@ export const DataProvider = ({ children }) => {
   }, [settings]);
 
   // Auth Handlers
-  const loginAdmin = (username, password) => {
-    if ((username === 'admin' && password === 'admin123') || password === '1234') {
+  const loginAdmin = (username, pass) => {
+    if ((username === 'admin' && pass === 'admin123') || pass === '1234') {
       setIsAdminAuthenticated(true);
       localStorage.setItem('tat_admin_auth', 'true');
       return true;

@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { useData } from '../../context/DataContext';
-import { Lock, User, Sparkles, ShieldCheck } from 'lucide-react';
+import { Lock, User, Sparkles, ShieldCheck, Eye, EyeOff } from 'lucide-react';
 
 const AdminLoginPage = () => {
   const { loginAdmin } = useData();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const success = loginAdmin(username, password);
     if (!success) {
-      setError('Invalid credentials. Use admin / admin123 or password 1234');
+      setError('Invalid credentials. Please try again.');
     }
   };
 
@@ -73,7 +74,7 @@ const AdminLoginPage = () => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="admin"
+                placeholder="name"
                 style={{
                   width: '100%',
                   padding: '12px 12px 12px 40px',
@@ -96,13 +97,13 @@ const AdminLoginPage = () => {
             <div style={{ position: 'relative' }}>
               <Lock size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#8c7e6b' }} />
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="admin123"
+                placeholder="password"
                 style={{
                   width: '100%',
-                  padding: '12px 12px 12px 40px',
+                  padding: '12px 40px 12px 40px',
                   background: 'rgba(30, 26, 22, 0.8)',
                   border: '1px solid rgba(212, 175, 55, 0.25)',
                   borderRadius: '8px',
@@ -112,6 +113,26 @@ const AdminLoginPage = () => {
                   boxSizing: 'border-box'
                 }}
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '12px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  color: '#8c7e6b',
+                  cursor: 'pointer',
+                  padding: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
             </div>
           </div>
 
@@ -140,7 +161,7 @@ const AdminLoginPage = () => {
         </form>
 
         <div style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px solid rgba(212, 175, 55, 0.1)', fontSize: '12px', color: '#8c7e6b' }}>
-          Default Demo Access: <strong>admin</strong> / <strong>admin123</strong>
+          Please contact the system administrator if you have lost your credentials.
         </div>
       </div>
     </div>
