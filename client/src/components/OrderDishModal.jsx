@@ -25,11 +25,15 @@ const OrderDishModal = ({ isOpen, onClose, selectedDish }) => {
   const numericPrice = parseFloat(dishPrice.replace(/[^0-9.]/g, '')) || 20;
   const totalPrice = `$${(numericPrice * quantity).toFixed(2)}`;
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+
   const createOrder = async () => {
     try {
-      const response = await fetch('/api/orders/create-order', {
+      const response = await fetch(`${API_BASE_URL}/api/orders/create-order`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
           items: [{
             name: dishName,
@@ -39,17 +43,18 @@ const OrderDishModal = ({ isOpen, onClose, selectedDish }) => {
         })
       });
       const order = await response.json();
-      if (order.error) throw new Error(order.error);
+      if (!response.ok) throw new Error(order.error || 'Failed to create order');
       return order.id;
-    } catch (error) {
-      console.error("Error creating PayPal order:", error);
-      alert("Could not initiate PayPal checkout. Please try again.");
+    } catch (err) {
+      console.error('Create Order Error:', err);
+      alert('Could not initiate PayPal checkout. Please try again.');
+      throw err;
     }
   };
 
   const onApprove = async (data, actions) => {
     try {
-      const response = await fetch('/api/orders/capture-order', {
+      const response = await fetch(`${API_BASE_URL}/api/orders/capture-order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
