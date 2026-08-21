@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, ShoppingBag, CheckCircle2, MapPin, Utensils, Minus, Plus } from 'lucide-react';
 import { branchData } from '../data/restaurantData';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 
 const OrderDishModal = ({ isOpen, onClose, selectedDish }) => {
   const [quantity, setQuantity] = useState(1);
@@ -24,9 +25,45 @@ const OrderDishModal = ({ isOpen, onClose, selectedDish }) => {
   const numericPrice = parseFloat(dishPrice.replace(/[^0-9.]/g, '')) || 20;
   const totalPrice = `$${(numericPrice * quantity).toFixed(2)}`;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitted(true);
+  const createOrder = async () => {
+    try {
+      const response = await fetch('/api/orders/create-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: [{
+            name: dishName,
+            price: numericPrice,
+            quantity: quantity
+          }]
+        })
+      });
+      const order = await response.json();
+      if (order.error) throw new Error(order.error);
+      return order.id;
+    } catch (error) {
+      console.error("Error creating PayPal order:", error);
+      alert("Could not initiate PayPal checkout. Please try again.");
+    }
+  };
+
+  const onApprove = async (data, actions) => {
+    try {
+      const response = await fetch('/api/orders/capture-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          orderID: data.orderID
+        })
+      });
+      const captureData = await response.json();
+      if (captureData.error) throw new Error(captureData.error);
+      
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("Error capturing PayPal order:", error);
+      alert("Payment failed or could not be captured. Please contact support.");
+    }
   };
 
   const resetModal = () => {
@@ -201,7 +238,7 @@ const OrderDishModal = ({ isOpen, onClose, selectedDish }) => {
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
               {/* Branch & Order Type */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 <div>
@@ -332,11 +369,12 @@ const OrderDishModal = ({ isOpen, onClose, selectedDish }) => {
                 </div>
               )}
 
-              <button type="submit" className="btn btn-teal" style={{ padding: '0.95rem', marginTop: '0.5rem', width: '100%', display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
-                <ShoppingBag size={18} />
-                <span>Confirm Order ({totalPrice})</span>
-              </button>
-            </form>
+              <PayPalButtons 
+                createOrder={createOrder}
+                onApprove={onApprove}
+                style={{ layout: "vertical", shape: "rect", color: "gold" }} 
+              />
+            </div>
           </div>
         )}
       </div>

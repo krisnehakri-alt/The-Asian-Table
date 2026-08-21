@@ -25,7 +25,6 @@ const AdminLayout = () => {
     { label: 'Overview', path: '/admin', icon: LayoutDashboard, end: true },
     { label: 'Menu Management', path: '/admin/menu', icon: UtensilsCrossed },
     { label: 'Gallery Management', path: '/admin/gallery', icon: Image },
-    { label: 'Branch Management', path: '/admin/branches', icon: MapPin },
     { label: 'Customer Reviews', path: '/admin/reviews', icon: Star },
     { label: 'Contact Messages', path: '/admin/messages', icon: Mail },
     { label: 'Website Settings', path: '/admin/settings', icon: Settings },

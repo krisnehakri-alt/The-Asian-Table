@@ -1,6 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { DataProvider, useData } from './context/DataContext';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -97,36 +98,38 @@ function App() {
   const [isReservationOpen, setIsReservationOpen] = useState(false);
 
   return (
-    <DataProvider>
-      <Router>
-        <ScrollToTop />
-        {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
-        <ReservationModal isOpen={isReservationOpen} onClose={() => setIsReservationOpen(false)} />
-        
-        <Routes>
-          {/* Admin Nested Routes */}
-          <Route path="/admin/*" element={
-            <Suspense fallback={<PageLoader />}>
-              <Routes>
-                <Route element={<ProtectedAdminRoute />}>
-                  <Route index element={<DashboardOverview />} />
-                  <Route path="menu" element={<MenuManagement />} />
-                  <Route path="gallery" element={<GalleryManagement />} />
-                  <Route path="branches" element={<BranchManagement />} />
-                  <Route path="reviews" element={<ReviewManagement />} />
-                  <Route path="messages" element={<ContactInbox />} />
-                  <Route path="settings" element={<WebsiteSettings />} />
-                  <Route path="*" element={<Navigate to="/admin" replace />} />
-                </Route>
-              </Routes>
-            </Suspense>
-          } />
+    <PayPalScriptProvider options={{ "client-id": "BAA7QC6L-vAaUQkHMdVx4ejGWoVCDjn1a5PlUNva1OnBMxXZm_cxaL5qAHzzBbBTaiYO9Sg3LRhK9J5ldw", currency: "USD" }}>
+      <DataProvider>
+        <Router>
+          <ScrollToTop />
+          {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
+          <ReservationModal isOpen={isReservationOpen} onClose={() => setIsReservationOpen(false)} />
+          
+          <Routes>
+            {/* Admin Nested Routes */}
+            <Route path="/admin/*" element={
+              <Suspense fallback={<PageLoader />}>
+                <Routes>
+                  <Route element={<ProtectedAdminRoute />}>
+                    <Route index element={<DashboardOverview />} />
+                    <Route path="menu" element={<MenuManagement />} />
+                    <Route path="gallery" element={<GalleryManagement />} />
+                    <Route path="branches" element={<BranchManagement />} />
+                    <Route path="reviews" element={<ReviewManagement />} />
+                    <Route path="messages" element={<ContactInbox />} />
+                    <Route path="settings" element={<WebsiteSettings />} />
+                    <Route path="*" element={<Navigate to="/admin" replace />} />
+                  </Route>
+                </Routes>
+              </Suspense>
+            } />
 
-          {/* Public Routes */}
-          <Route path="/*" element={<PublicLayout onBookTableClick={() => setIsReservationOpen(true)} />} />
-        </Routes>
-      </Router>
-    </DataProvider>
+            {/* Public Routes */}
+            <Route path="/*" element={<PublicLayout onBookTableClick={() => setIsReservationOpen(true)} />} />
+          </Routes>
+        </Router>
+      </DataProvider>
+    </PayPalScriptProvider>
   );
 }
 
