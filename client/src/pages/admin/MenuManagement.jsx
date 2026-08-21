@@ -104,10 +104,10 @@ const MenuManagement = () => {
       {/* Action Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
         <div>
-          <h2 style={{ fontFamily: 'Cinzel, serif', fontSize: '24px', color: '#d4af37', margin: '0 0 6px 0' }}>
+          <h2 style={{ fontFamily: 'Cinzel, serif', fontSize: '24px', color: '#00D2B4', margin: '0 0 6px 0' }}>
             Menu Management
           </h2>
-          <p style={{ color: '#a09585', fontSize: '14px', margin: 0 }}>
+          <p style={{ color: '#94A8B3', fontSize: '14px', margin: 0 }}>
             Create, edit, upload food images, set pricing, veg/non-veg status, and chef specials.
           </p>
         </div>
@@ -116,7 +116,7 @@ const MenuManagement = () => {
           onClick={() => handleOpenModal()}
           style={{
             padding: '12px 20px',
-            background: 'linear-gradient(135deg, #d4af37 0%, #aa820a 100%)',
+            background: 'linear-gradient(135deg, #00D2B4 0%, #00B49B 100%)',
             color: '#000',
             fontWeight: '600',
             fontSize: '14px',
@@ -126,7 +126,7 @@ const MenuManagement = () => {
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            boxShadow: '0 4px 15px rgba(212, 175, 55, 0.2)'
+            boxShadow: '0 4px 15px rgba(0, 210, 180, 0.2)'
           }}
         >
           <Plus size={18} /> Add New Dish
@@ -136,7 +136,7 @@ const MenuManagement = () => {
       {/* Filter Bar */}
       <div style={{
         background: 'rgba(22, 18, 15, 0.8)',
-        border: '1px solid rgba(212, 175, 55, 0.15)',
+        border: '1px solid rgba(0, 210, 180, 0.15)',
         borderRadius: '12px',
         padding: '16px 20px',
         display: 'flex',
@@ -156,8 +156,8 @@ const MenuManagement = () => {
             style={{
               width: '100%',
               padding: '10px 12px 10px 40px',
-              background: 'rgba(30, 26, 22, 0.8)',
-              border: '1px solid rgba(212, 175, 55, 0.2)',
+              background: 'rgba(17, 22, 27, 0.8)',
+              border: '1px solid rgba(0, 210, 180, 0.2)',
               borderRadius: '6px',
               color: '#fff',
               fontSize: '14px',
@@ -176,9 +176,9 @@ const MenuManagement = () => {
               borderRadius: '6px',
               fontSize: '13px',
               cursor: 'pointer',
-              border: '1px solid rgba(212, 175, 55, 0.2)',
-              background: selectedCategory === 'all' ? '#d4af37' : 'transparent',
-              color: selectedCategory === 'all' ? '#000' : '#a09585',
+              border: '1px solid rgba(0, 210, 180, 0.2)',
+              background: selectedCategory === 'all' ? '#00D2B4' : 'transparent',
+              color: selectedCategory === 'all' ? '#000' : '#94A8B3',
               fontWeight: selectedCategory === 'all' ? '600' : '400'
             }}
           >
@@ -194,9 +194,9 @@ const MenuManagement = () => {
                 borderRadius: '6px',
                 fontSize: '13px',
                 cursor: 'pointer',
-                border: '1px solid rgba(212, 175, 55, 0.2)',
-                background: selectedCategory === cat.name ? '#d4af37' : 'transparent',
-                color: selectedCategory === cat.name ? '#000' : '#a09585',
+                border: '1px solid rgba(0, 210, 180, 0.2)',
+                background: selectedCategory === cat.name ? '#00D2B4' : 'transparent',
+                color: selectedCategory === cat.name ? '#000' : '#94A8B3',
                 fontWeight: selectedCategory === cat.name ? '600' : '400'
               }}
             >
@@ -209,14 +209,14 @@ const MenuManagement = () => {
       {/* Menu Grid / Table */}
       <div style={{
         background: 'rgba(22, 18, 15, 0.8)',
-        border: '1px solid rgba(212, 175, 55, 0.15)',
+        border: '1px solid rgba(0, 210, 180, 0.15)',
         borderRadius: '12px',
         overflow: 'hidden'
       }}>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '14px' }}>
             <thead>
-              <tr style={{ background: 'rgba(255, 255, 255, 0.04)', color: '#d4af37', borderBottom: '1px solid rgba(212, 175, 55, 0.15)' }}>
+              <tr style={{ background: 'rgba(255, 255, 255, 0.04)', color: '#00D2B4', borderBottom: '1px solid rgba(0, 210, 180, 0.15)' }}>
                 <th style={{ padding: '16px 20px' }}>Dish Info</th>
                 <th style={{ padding: '16px' }}>Category</th>
                 <th style={{ padding: '16px' }}>Price</th>
@@ -240,23 +240,23 @@ const MenuManagement = () => {
                         <img
                           src={item.image}
                           alt={item.name}
-                          style={{ width: '50px', height: '50px', borderRadius: '8px', objectFit: 'cover', border: '1px solid rgba(212, 175, 55, 0.2)' }}
+                          style={{ width: '50px', height: '50px', borderRadius: '8px', objectFit: 'cover', border: '1px solid rgba(0, 210, 180, 0.2)' }}
                           onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=200'; }}
                         />
                         <div>
                           <div style={{ fontWeight: '600', color: '#fff' }}>{item.name}</div>
-                          <div style={{ fontSize: '12px', color: '#8c7e6b', maxWidth: '280px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                          <div style={{ fontSize: '12px', color: '#94A8B3', maxWidth: '280px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                             {item.description}
                           </div>
                         </div>
                       </div>
                     </td>
 
-                    <td style={{ padding: '16px', color: '#a09585' }}>
+                    <td style={{ padding: '16px', color: '#94A8B3' }}>
                       {item.category}
                     </td>
 
-                    <td style={{ padding: '16px', fontWeight: '600', color: '#d4af37' }}>
+                    <td style={{ padding: '16px', fontWeight: '600', color: '#00D2B4' }}>
                       {item.price}
                     </td>
 
@@ -286,7 +286,7 @@ const MenuManagement = () => {
                       <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
                         <button
                           onClick={() => handleOpenModal(item)}
-                          style={{ padding: '8px', borderRadius: '6px', background: 'rgba(212, 175, 55, 0.15)', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#d4af37', cursor: 'pointer' }}
+                          style={{ padding: '8px', borderRadius: '6px', background: 'rgba(0, 210, 180, 0.15)', border: '1px solid rgba(0, 210, 180, 0.3)', color: '#00D2B4', cursor: 'pointer' }}
                         >
                           <Edit2 size={16} />
                         </button>
@@ -325,7 +325,7 @@ const MenuManagement = () => {
         }}>
           <div style={{
             background: '#16120f',
-            border: '1px solid rgba(212, 175, 55, 0.3)',
+            border: '1px solid rgba(0, 210, 180, 0.3)',
             borderRadius: '16px',
             width: '100%',
             maxWidth: '560px',
@@ -334,8 +334,8 @@ const MenuManagement = () => {
             padding: '28px',
             boxShadow: '0 20px 50px rgba(0, 0, 0, 0.9)'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', borderBottom: '1px solid rgba(212, 175, 55, 0.15)', paddingBottom: '12px' }}>
-              <h3 style={{ fontFamily: 'Cinzel, serif', fontSize: '20px', color: '#d4af37', margin: 0 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', borderBottom: '1px solid rgba(0, 210, 180, 0.15)', paddingBottom: '12px' }}>
+              <h3 style={{ fontFamily: 'Cinzel, serif', fontSize: '20px', color: '#00D2B4', margin: 0 }}>
                 {editingItem ? 'Edit Menu Item' : 'Add New Menu Item'}
               </h3>
               <button onClick={() => setIsModalOpen(false)} style={{ background: 'none', border: 'none', color: '#888', cursor: 'pointer' }}>
@@ -345,23 +345,23 @@ const MenuManagement = () => {
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '12px', color: '#c5b59b', marginBottom: '6px' }}>Dish Name *</label>
+                <label style={{ display: 'block', fontSize: '12px', color: '#94A8B3', marginBottom: '6px' }}>Dish Name *</label>
                 <input
                   type="text"
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  style={{ width: '100%', padding: '10px', background: 'rgba(30,26,22,0.8)', border: '1px solid rgba(212,175,55,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
+                  style={{ width: '100%', padding: '10px', background: 'rgba(17, 22, 27,0.8)', border: '1px solid rgba(0, 210, 180,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
                 />
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '12px', color: '#c5b59b', marginBottom: '6px' }}>Category *</label>
+                  <label style={{ display: 'block', fontSize: '12px', color: '#94A8B3', marginBottom: '6px' }}>Category *</label>
                   <select
                     value={formData.category}
                     onChange={(e) => handleCategoryChange(e.target.value)}
-                    style={{ width: '100%', padding: '10px', background: '#1e1a16', border: '1px solid rgba(212,175,55,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
+                    style={{ width: '100%', padding: '10px', background: '#1e1a16', border: '1px solid rgba(0, 210, 180,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
                   >
                     {menuCategories.map((cat) => (
                       <option key={cat.id} value={cat.name}>{cat.name}</option>
@@ -370,38 +370,38 @@ const MenuManagement = () => {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '12px', color: '#c5b59b', marginBottom: '6px' }}>Price *</label>
+                  <label style={{ display: 'block', fontSize: '12px', color: '#94A8B3', marginBottom: '6px' }}>Price *</label>
                   <input
                     type="text"
                     required
                     placeholder="$22.00"
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                    style={{ width: '100%', padding: '10px', background: 'rgba(30,26,22,0.8)', border: '1px solid rgba(212,175,55,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
+                    style={{ width: '100%', padding: '10px', background: 'rgba(17, 22, 27,0.8)', border: '1px solid rgba(0, 210, 180,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
                   />
                 </div>
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '12px', color: '#c5b59b', marginBottom: '6px' }}>Food Image URL *</label>
+                <label style={{ display: 'block', fontSize: '12px', color: '#94A8B3', marginBottom: '6px' }}>Food Image URL *</label>
                 <input
                   type="text"
                   required
                   placeholder="https://images.unsplash.com/..."
                   value={formData.image}
                   onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                  style={{ width: '100%', padding: '10px', background: 'rgba(30,26,22,0.8)', border: '1px solid rgba(212,175,55,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
+                  style={{ width: '100%', padding: '10px', background: 'rgba(17, 22, 27,0.8)', border: '1px solid rgba(0, 210, 180,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
                 />
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '12px', color: '#c5b59b', marginBottom: '6px' }}>Description *</label>
+                <label style={{ display: 'block', fontSize: '12px', color: '#94A8B3', marginBottom: '6px' }}>Description *</label>
                 <textarea
                   rows={3}
                   required
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  style={{ width: '100%', padding: '10px', background: 'rgba(30,26,22,0.8)', border: '1px solid rgba(212,175,55,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box', fontFamily: 'inherit' }}
+                  style={{ width: '100%', padding: '10px', background: 'rgba(17, 22, 27,0.8)', border: '1px solid rgba(0, 210, 180,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box', fontFamily: 'inherit' }}
                 />
               </div>
 
@@ -435,7 +435,7 @@ const MenuManagement = () => {
                 </button>
                 <button
                   type="submit"
-                  style={{ padding: '10px 22px', background: '#d4af37', color: '#000', fontWeight: '600', border: 'none', borderRadius: '6px', cursor: 'pointer' }}
+                  style={{ padding: '10px 22px', background: '#00D2B4', color: '#000', fontWeight: '600', border: 'none', borderRadius: '6px', cursor: 'pointer' }}
                 >
                   {editingItem ? 'Save Changes' : 'Create Item'}
                 </button>

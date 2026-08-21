@@ -19,7 +19,7 @@ const DashboardOverview = () => {
   const unreadMessagesCount = messages.filter((m) => !m.read).length;
 
   const statCards = [
-    { title: 'Total Menu Items', count: menuItems.length, icon: UtensilsCrossed, link: '/admin/menu', color: '#d4af37' },
+    { title: 'Total Menu Items', count: menuItems.length, icon: UtensilsCrossed, link: '/admin/menu', color: '#00D2B4' },
     { title: 'Total Gallery Images', count: galleryImages.length, icon: Image, link: '/admin/gallery', color: '#3b82f6' },
     { title: 'Total Branches', count: branches.length, icon: MapPin, link: '/admin/branches', color: '#10b981' },
     { title: 'Total Contact Messages', count: messages.length, badge: unreadMessagesCount > 0 ? `${unreadMessagesCount} unread` : null, icon: Mail, link: '/admin/messages', color: '#f59e0b' },
@@ -31,8 +31,8 @@ const DashboardOverview = () => {
       
       {/* Welcome Banner */}
       <div style={{
-        background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(20, 17, 14, 0.8) 100%)',
-        border: '1px solid rgba(212, 175, 55, 0.25)',
+        background: 'linear-gradient(135deg, rgba(0, 210, 180, 0.15) 0%, rgba(21, 29, 36, 0.8) 100%)',
+        border: '1px solid rgba(0, 210, 180, 0.25)',
         borderRadius: '16px',
         padding: '28px 32px',
         display: 'flex',
@@ -42,10 +42,10 @@ const DashboardOverview = () => {
         gap: '20px'
       }}>
         <div>
-          <h2 style={{ fontFamily: 'Cinzel, serif', fontSize: '24px', color: '#d4af37', marginBottom: '8px' }}>
+          <h2 style={{ fontFamily: 'Cinzel, serif', fontSize: '24px', color: '#00D2B4', marginBottom: '8px' }}>
             Welcome to Executive Dashboard
           </h2>
-          <p style={{ color: '#a09585', fontSize: '14px', margin: 0 }}>
+          <p style={{ color: '#94A8B3', fontSize: '14px', margin: 0 }}>
             Manage menu offerings, luxury gallery, location branches, customer feedback, and website configurations.
           </p>
         </div>
@@ -58,7 +58,7 @@ const DashboardOverview = () => {
               alignItems: 'center',
               gap: '8px',
               padding: '12px 20px',
-              background: '#d4af37',
+              background: '#00D2B4',
               color: '#000',
               fontWeight: '600',
               fontSize: '14px',
@@ -90,7 +90,7 @@ const DashboardOverview = () => {
                 to={card.link}
                 style={{
                   background: 'rgba(22, 18, 15, 0.8)',
-                  border: '1px solid rgba(212, 175, 55, 0.15)',
+                  border: '1px solid rgba(0, 210, 180, 0.15)',
                   borderRadius: '12px',
                   padding: '24px',
                   textDecoration: 'none',
@@ -111,7 +111,7 @@ const DashboardOverview = () => {
                   {card.count}
                 </div>
 
-                <div style={{ fontSize: '13px', color: '#a09585', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ fontSize: '13px', color: '#94A8B3', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <span>{card.title}</span>
                   {card.badge && (
                     <span style={{ fontSize: '11px', background: 'rgba(245, 158, 11, 0.2)', color: '#f59e0b', padding: '2px 8px', borderRadius: '12px' }}>
@@ -131,15 +131,15 @@ const DashboardOverview = () => {
         {/* Recent Messages Card */}
         <div style={{
           background: 'rgba(22, 18, 15, 0.8)',
-          border: '1px solid rgba(212, 175, 55, 0.15)',
+          border: '1px solid rgba(0, 210, 180, 0.15)',
           borderRadius: '12px',
           padding: '24px'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
-            <h4 style={{ fontFamily: 'Cinzel, serif', fontSize: '16px', color: '#d4af37', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <h4 style={{ fontFamily: 'Cinzel, serif', fontSize: '16px', color: '#00D2B4', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Mail size={18} /> Recent Contact Inbox
             </h4>
-            <NavLink to="/admin/messages" style={{ fontSize: '12px', color: '#d4af37', textDecoration: 'none' }}>
+            <NavLink to="/admin/messages" style={{ fontSize: '12px', color: '#00D2B4', textDecoration: 'none' }}>
               View All
             </NavLink>
           </div>
@@ -159,8 +159,8 @@ const DashboardOverview = () => {
                     <strong style={{ fontSize: '13px', color: '#fff' }}>{msg.name}</strong>
                     <span style={{ fontSize: '11px', color: '#777' }}>{msg.date}</span>
                   </div>
-                  <div style={{ fontSize: '12px', color: '#d4af37', marginBottom: '4px' }}>{msg.subject}</div>
-                  <p style={{ fontSize: '12px', color: '#a09585', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  <div style={{ fontSize: '12px', color: '#00D2B4', marginBottom: '4px' }}>{msg.subject}</div>
+                  <p style={{ fontSize: '12px', color: '#94A8B3', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     {msg.message}
                   </p>
                 </div>
@@ -172,17 +172,17 @@ const DashboardOverview = () => {
         {/* Quick Activity Audit */}
         <div style={{
           background: 'rgba(22, 18, 15, 0.8)',
-          border: '1px solid rgba(212, 175, 55, 0.15)',
+          border: '1px solid rgba(0, 210, 180, 0.15)',
           borderRadius: '12px',
           padding: '24px'
         }}>
-          <h4 style={{ fontFamily: 'Cinzel, serif', fontSize: '16px', color: '#d4af37', margin: '0 0 20px 0', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <h4 style={{ fontFamily: 'Cinzel, serif', fontSize: '16px', color: '#00D2B4', margin: '0 0 20px 0', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <TrendingUp size={18} /> System Activity & Highlights
           </h4>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-              <div style={{ padding: '8px', borderRadius: '50%', background: 'rgba(212, 175, 55, 0.15)', color: '#d4af37' }}>
+              <div style={{ padding: '8px', borderRadius: '50%', background: 'rgba(0, 210, 180, 0.15)', color: '#00D2B4' }}>
                 <Clock size={16} />
               </div>
               <div>

@@ -39,10 +39,10 @@ const ContactInbox = () => {
       
       {/* Header */}
       <div>
-        <h2 style={{ fontFamily: 'Cinzel, serif', fontSize: '24px', color: '#d4af37', margin: '0 0 6px 0' }}>
+        <h2 style={{ fontFamily: 'Cinzel, serif', fontSize: '24px', color: '#00D2B4', margin: '0 0 6px 0' }}>
           Contact Messages Inbox
         </h2>
-        <p style={{ color: '#a09585', fontSize: '14px', margin: 0 }}>
+        <p style={{ color: '#94A8B3', fontSize: '14px', margin: 0 }}>
           View customer inquiries submitted via website contact form, mark status as read, or delete.
         </p>
       </div>
@@ -53,14 +53,14 @@ const ContactInbox = () => {
         {/* Messages List Column */}
         <div style={{
           background: 'rgba(22, 18, 15, 0.8)',
-          border: '1px solid rgba(212, 175, 55, 0.15)',
+          border: '1px solid rgba(0, 210, 180, 0.15)',
           borderRadius: '12px',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column'
         }}>
           {/* Search bar */}
-          <div style={{ padding: '16px', borderBottom: '1px solid rgba(212, 175, 55, 0.15)', position: 'relative' }}>
+          <div style={{ padding: '16px', borderBottom: '1px solid rgba(0, 210, 180, 0.15)', position: 'relative' }}>
             <Search size={16} style={{ position: 'absolute', left: '28px', top: '50%', transform: 'translateY(-50%)', color: '#888' }} />
             <input
               type="text"
@@ -70,8 +70,8 @@ const ContactInbox = () => {
               style={{
                 width: '100%',
                 padding: '10px 12px 10px 36px',
-                background: 'rgba(30, 26, 22, 0.8)',
-                border: '1px solid rgba(212, 175, 55, 0.2)',
+                background: 'rgba(17, 22, 27, 0.8)',
+                border: '1px solid rgba(0, 210, 180, 0.2)',
                 borderRadius: '6px',
                 color: '#fff',
                 fontSize: '13px',
@@ -100,12 +100,12 @@ const ContactInbox = () => {
                       padding: '16px 20px',
                       borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
                       background: isSelected
-                        ? 'rgba(212, 175, 55, 0.15)'
+                        ? 'rgba(0, 210, 180, 0.15)'
                         : msg.read
                         ? 'transparent'
-                        : 'rgba(212, 175, 55, 0.05)',
+                        : 'rgba(0, 210, 180, 0.05)',
                       cursor: 'pointer',
-                      borderLeft: msg.read ? '3px solid transparent' : '3px solid #d4af37',
+                      borderLeft: msg.read ? '3px solid transparent' : '3px solid #00D2B4',
                       transition: 'background 0.2s'
                     }}
                   >
@@ -116,11 +116,11 @@ const ContactInbox = () => {
                       <span style={{ fontSize: '11px', color: '#888' }}>{msg.date}</span>
                     </div>
 
-                    <div style={{ fontSize: '13px', color: '#d4af37', marginBottom: '4px', fontWeight: '500' }}>
+                    <div style={{ fontSize: '13px', color: '#00D2B4', marginBottom: '4px', fontWeight: '500' }}>
                       {msg.subject}
                     </div>
 
-                    <div style={{ fontSize: '12px', color: '#a09585', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    <div style={{ fontSize: '12px', color: '#94A8B3', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       {msg.message}
                     </div>
 
@@ -143,7 +143,7 @@ const ContactInbox = () => {
         {/* Message Content Viewer */}
         <div style={{
           background: 'rgba(22, 18, 15, 0.8)',
-          border: '1px solid rgba(212, 175, 55, 0.15)',
+          border: '1px solid rgba(0, 210, 180, 0.15)',
           borderRadius: '12px',
           padding: '28px',
           display: 'flex',
@@ -160,9 +160,9 @@ const ContactInbox = () => {
           ) : (
             <>
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid rgba(212, 175, 55, 0.15)', paddingBottom: '16px', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid rgba(0, 210, 180, 0.15)', paddingBottom: '16px', marginBottom: '20px' }}>
                   <div>
-                    <h3 style={{ fontFamily: 'Cinzel, serif', fontSize: '20px', color: '#d4af37', margin: '0 0 6px 0' }}>
+                    <h3 style={{ fontFamily: 'Cinzel, serif', fontSize: '20px', color: '#00D2B4', margin: '0 0 6px 0' }}>
                       {selectedMessage.subject}
                     </h3>
                     <div style={{ fontSize: '12px', color: '#888', display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -175,9 +175,9 @@ const ContactInbox = () => {
                     style={{
                       padding: '6px 12px',
                       borderRadius: '6px',
-                      background: selectedMessage.read ? 'rgba(255,255,255,0.05)' : 'rgba(212, 175, 55, 0.2)',
-                      border: '1px solid rgba(212, 175, 55, 0.3)',
-                      color: selectedMessage.read ? '#aaa' : '#d4af37',
+                      background: selectedMessage.read ? 'rgba(255,255,255,0.05)' : 'rgba(0, 210, 180, 0.2)',
+                      border: '1px solid rgba(0, 210, 180, 0.3)',
+                      color: selectedMessage.read ? '#aaa' : '#00D2B4',
                       fontSize: '12px',
                       cursor: 'pointer'
                     }}
@@ -188,24 +188,24 @@ const ContactInbox = () => {
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '8px', marginBottom: '20px', fontSize: '13px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#fff' }}>
-                    <User size={14} style={{ color: '#d4af37' }} />
+                    <User size={14} style={{ color: '#00D2B4' }} />
                     <strong>From:</strong> {selectedMessage.name}
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#fff' }}>
-                    <Mail size={14} style={{ color: '#d4af37' }} />
-                    <strong>Email:</strong> <a href={`mailto:${selectedMessage.email}`} style={{ color: '#d4af37' }}>{selectedMessage.email}</a>
+                    <Mail size={14} style={{ color: '#00D2B4' }} />
+                    <strong>Email:</strong> <a href={`mailto:${selectedMessage.email}`} style={{ color: '#00D2B4' }}>{selectedMessage.email}</a>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#fff' }}>
-                    <Phone size={14} style={{ color: '#d4af37' }} />
+                    <Phone size={14} style={{ color: '#00D2B4' }} />
                     <strong>Phone:</strong> {selectedMessage.phone || 'N/A'}
                   </div>
                 </div>
 
                 <div>
-                  <h4 style={{ fontSize: '13px', color: '#c5b59b', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '8px' }}>
+                  <h4 style={{ fontSize: '13px', color: '#94A8B3', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '8px' }}>
                     Message Body
                   </h4>
-                  <div style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(212,175,55,0.1)', padding: '16px', borderRadius: '8px', color: '#f3e8d8', fontSize: '14px', lineHeight: '1.7', whiteSpace: 'pre-wrap' }}>
+                  <div style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(0, 210, 180,0.1)', padding: '16px', borderRadius: '8px', color: '#F0F6F6', fontSize: '14px', lineHeight: '1.7', whiteSpace: 'pre-wrap' }}>
                     {selectedMessage.message}
                   </div>
                 </div>

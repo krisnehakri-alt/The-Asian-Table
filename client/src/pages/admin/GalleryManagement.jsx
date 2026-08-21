@@ -74,10 +74,10 @@ const GalleryManagement = () => {
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
         <div>
-          <h2 style={{ fontFamily: 'Cinzel, serif', fontSize: '24px', color: '#d4af37', margin: '0 0 6px 0' }}>
+          <h2 style={{ fontFamily: 'Cinzel, serif', fontSize: '24px', color: '#00D2B4', margin: '0 0 6px 0' }}>
             Gallery Management
           </h2>
-          <p style={{ color: '#a09585', fontSize: '14px', margin: 0 }}>
+          <p style={{ color: '#94A8B3', fontSize: '14px', margin: 0 }}>
             Upload ambience images, assign view categories, edit titles, and reorder visual showcase.
           </p>
         </div>
@@ -86,7 +86,7 @@ const GalleryManagement = () => {
           onClick={() => handleOpenModal()}
           style={{
             padding: '12px 20px',
-            background: 'linear-gradient(135deg, #d4af37 0%, #aa820a 100%)',
+            background: 'linear-gradient(135deg, #00D2B4 0%, #00B49B 100%)',
             color: '#000',
             fontWeight: '600',
             fontSize: '14px',
@@ -96,7 +96,7 @@ const GalleryManagement = () => {
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            boxShadow: '0 4px 15px rgba(212, 175, 55, 0.2)'
+            boxShadow: '0 4px 15px rgba(0, 210, 180, 0.2)'
           }}
         >
           <Plus size={18} /> Upload Image
@@ -112,7 +112,7 @@ const GalleryManagement = () => {
         {galleryImages.map((img, index) => (
           <div key={img.id} style={{
             background: 'rgba(22, 18, 15, 0.8)',
-            border: '1px solid rgba(212, 175, 55, 0.15)',
+            border: '1px solid rgba(0, 210, 180, 0.15)',
             borderRadius: '12px',
             overflow: 'hidden',
             display: 'flex',
@@ -130,11 +130,11 @@ const GalleryManagement = () => {
                 top: '10px',
                 right: '10px',
                 background: 'rgba(0, 0, 0, 0.75)',
-                color: '#d4af37',
+                color: '#00D2B4',
                 padding: '4px 10px',
                 borderRadius: '12px',
                 fontSize: '11px',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
+                border: '1px solid rgba(0, 210, 180, 0.3)',
                 textTransform: 'uppercase'
               }}>
                 {img.category}
@@ -146,7 +146,7 @@ const GalleryManagement = () => {
                 <h4 style={{ color: '#fff', fontSize: '15px', margin: '0 0 6px 0', fontWeight: '600' }}>
                   {img.title}
                 </h4>
-                <p style={{ color: '#8c7e6b', fontSize: '12px', margin: 0, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                <p style={{ color: '#94A8B3', fontSize: '12px', margin: 0, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                   {img.description || 'No description provided.'}
                 </p>
               </div>
@@ -173,7 +173,7 @@ const GalleryManagement = () => {
                 <div style={{ display: 'flex', gap: '8px' }}>
                   <button
                     onClick={() => handleOpenModal(img)}
-                    style={{ padding: '6px 10px', borderRadius: '6px', background: 'rgba(212, 175, 55, 0.15)', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#d4af37', cursor: 'pointer', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px' }}
+                    style={{ padding: '6px 10px', borderRadius: '6px', background: 'rgba(0, 210, 180, 0.15)', border: '1px solid rgba(0, 210, 180, 0.3)', color: '#00D2B4', cursor: 'pointer', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px' }}
                   >
                     <Edit2 size={14} /> Edit
                   </button>
@@ -202,13 +202,13 @@ const GalleryManagement = () => {
         }}>
           <div style={{
             background: '#16120f',
-            border: '1px solid rgba(212, 175, 55, 0.3)',
+            border: '1px solid rgba(0, 210, 180, 0.3)',
             borderRadius: '16px',
             width: '100%', maxWidth: '500px',
             padding: '28px', boxShadow: '0 20px 50px rgba(0, 0, 0, 0.9)'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-              <h3 style={{ fontFamily: 'Cinzel, serif', fontSize: '20px', color: '#d4af37', margin: 0 }}>
+              <h3 style={{ fontFamily: 'Cinzel, serif', fontSize: '20px', color: '#00D2B4', margin: 0 }}>
                 {editingImage ? 'Edit Gallery Item' : 'Upload Gallery Image'}
               </h3>
               <button onClick={() => setIsModalOpen(false)} style={{ background: 'none', border: 'none', color: '#888', cursor: 'pointer' }}>
@@ -218,20 +218,20 @@ const GalleryManagement = () => {
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '12px', color: '#c5b59b', marginBottom: '6px' }}>Image Title *</label>
+                <label style={{ display: 'block', fontSize: '12px', color: '#94A8B3', marginBottom: '6px' }}>Image Title *</label>
                 <input
                   type="text" required value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  style={{ width: '100%', padding: '10px', background: 'rgba(30,26,22,0.8)', border: '1px solid rgba(212,175,55,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
+                  style={{ width: '100%', padding: '10px', background: 'rgba(17, 22, 27,0.8)', border: '1px solid rgba(0, 210, 180,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
                 />
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '12px', color: '#c5b59b', marginBottom: '6px' }}>Gallery Category *</label>
+                <label style={{ display: 'block', fontSize: '12px', color: '#94A8B3', marginBottom: '6px' }}>Gallery Category *</label>
                 <select
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  style={{ width: '100%', padding: '10px', background: '#1e1a16', border: '1px solid rgba(212,175,55,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
+                  style={{ width: '100%', padding: '10px', background: '#1e1a16', border: '1px solid rgba(0, 210, 180,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
                 >
                   <option value="interior">Main Dining & Booths (interior)</option>
                   <option value="ambience">VIP & Private Alcoves (ambience)</option>
@@ -240,26 +240,26 @@ const GalleryManagement = () => {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '12px', color: '#c5b59b', marginBottom: '6px' }}>Image URL *</label>
+                <label style={{ display: 'block', fontSize: '12px', color: '#94A8B3', marginBottom: '6px' }}>Image URL *</label>
                 <input
                   type="text" required value={formData.image}
                   onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                  style={{ width: '100%', padding: '10px', background: 'rgba(30,26,22,0.8)', border: '1px solid rgba(212,175,55,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
+                  style={{ width: '100%', padding: '10px', background: 'rgba(17, 22, 27,0.8)', border: '1px solid rgba(0, 210, 180,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
                 />
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '12px', color: '#c5b59b', marginBottom: '6px' }}>Description</label>
+                <label style={{ display: 'block', fontSize: '12px', color: '#94A8B3', marginBottom: '6px' }}>Description</label>
                 <textarea
                   rows={3} value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  style={{ width: '100%', padding: '10px', background: 'rgba(30,26,22,0.8)', border: '1px solid rgba(212,175,55,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box', fontFamily: 'inherit' }}
+                  style={{ width: '100%', padding: '10px', background: 'rgba(17, 22, 27,0.8)', border: '1px solid rgba(0, 210, 180,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box', fontFamily: 'inherit' }}
                 />
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '12px' }}>
                 <button type="button" onClick={() => setIsModalOpen(false)} style={{ padding: '10px 18px', background: 'transparent', border: '1px solid #555', color: '#ccc', borderRadius: '6px', cursor: 'pointer' }}>Cancel</button>
-                <button type="submit" style={{ padding: '10px 22px', background: '#d4af37', color: '#000', fontWeight: '600', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>Save Image</button>
+                <button type="submit" style={{ padding: '10px 22px', background: '#00D2B4', color: '#000', fontWeight: '600', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>Save Image</button>
               </div>
             </form>
           </div>

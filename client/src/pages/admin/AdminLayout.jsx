@@ -37,13 +37,13 @@ const AdminLayout = () => {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: '#0e0c0a', color: '#f3e8d8', fontFamily: 'Inter, sans-serif' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', background: '#080A0D', color: '#F0F6F6', fontFamily: 'Inter, sans-serif' }}>
       
       {/* Sidebar for Desktop */}
       <aside style={{
         width: '260px',
-        background: '#14110e',
-        borderRight: '1px solid rgba(212, 175, 55, 0.15)',
+        background: '#11161B',
+        borderRight: '1px solid rgba(0, 210, 180, 0.15)',
         display: 'flex',
         flexDirection: 'column',
         position: 'fixed',
@@ -56,15 +56,15 @@ const AdminLayout = () => {
       }} className="admin-sidebar">
         
         {/* Sidebar Header */}
-        <div style={{ padding: '24px 20px', borderBottom: '1px solid rgba(212, 175, 55, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ padding: '24px 20px', borderBottom: '1px solid rgba(0, 210, 180, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d4af37' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#00D2B4' }}>
               <ShieldCheck size={22} />
               <span style={{ fontFamily: 'Cinzel, serif', fontWeight: '700', fontSize: '16px', letterSpacing: '1px' }}>
                 ADMIN PORTAL
               </span>
             </div>
-            <span style={{ fontSize: '11px', color: '#a09585', display: 'block', marginTop: '4px' }}>
+            <span style={{ fontSize: '11px', color: '#94A8B3', display: 'block', marginTop: '4px' }}>
               {settings.restaurantName}
             </span>
           </div>
@@ -94,9 +94,9 @@ const AdminLayout = () => {
                   gap: '12px',
                   padding: '12px 16px',
                   borderRadius: '8px',
-                  color: isActive ? '#d4af37' : '#a09585',
-                  background: isActive ? 'rgba(212, 175, 55, 0.12)' : 'transparent',
-                  borderLeft: isActive ? '3px solid #d4af37' : '3px solid transparent',
+                  color: isActive ? '#00D2B4' : '#94A8B3',
+                  background: isActive ? 'rgba(0, 210, 180, 0.12)' : 'transparent',
+                  borderLeft: isActive ? '3px solid #00D2B4' : '3px solid transparent',
                   textDecoration: 'none',
                   fontSize: '14px',
                   fontWeight: isActive ? '600' : '400',
@@ -111,7 +111,7 @@ const AdminLayout = () => {
         </nav>
 
         {/* Sidebar Footer */}
-        <div style={{ padding: '16px', borderTop: '1px solid rgba(212, 175, 55, 0.15)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        <div style={{ padding: '16px', borderTop: '1px solid rgba(0, 210, 180, 0.15)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
           <a
             href="/"
             target="_blank"
@@ -124,7 +124,7 @@ const AdminLayout = () => {
               padding: '10px',
               borderRadius: '6px',
               background: 'rgba(255, 255, 255, 0.05)',
-              color: '#d4af37',
+              color: '#00D2B4',
               textDecoration: 'none',
               fontSize: '13px'
             }}
@@ -160,9 +160,9 @@ const AdminLayout = () => {
         {/* Top Navbar */}
         <header style={{
           height: '64px',
-          background: 'rgba(20, 17, 14, 0.8)',
+          background: 'rgba(21, 29, 36, 0.8)',
           backdropFilter: 'blur(10px)',
-          borderBottom: '1px solid rgba(212, 175, 55, 0.15)',
+          borderBottom: '1px solid rgba(0, 210, 180, 0.15)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -173,19 +173,19 @@ const AdminLayout = () => {
         }}>
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
-            style={{ background: 'none', border: 'none', color: '#d4af37', cursor: 'pointer', display: 'none' }}
+            style={{ background: 'none', border: 'none', color: '#00D2B4', cursor: 'pointer', display: 'none' }}
             className="mobile-menu-btn"
           >
             <MenuIcon size={24} />
           </button>
 
-          <h1 style={{ fontFamily: 'Cinzel, serif', fontSize: '18px', color: '#d4af37', margin: 0, fontWeight: '600' }}>
+          <h1 style={{ fontFamily: 'Cinzel, serif', fontSize: '18px', color: '#00D2B4', margin: 0, fontWeight: '600' }}>
             Dashboard Control Center
           </h1>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <span style={{ fontSize: '13px', color: '#a09585' }}>Logged in as <strong style={{ color: '#fff' }}>Administrator</strong></span>
-            <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'linear-gradient(135deg, #d4af37, #aa820a)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontWeight: 'bold', fontSize: '14px' }}>
+            <span style={{ fontSize: '13px', color: '#94A8B3' }}>Logged in as <strong style={{ color: '#fff' }}>Administrator</strong></span>
+            <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'linear-gradient(135deg, #00D2B4, #00B49B)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontWeight: 'bold', fontSize: '14px' }}>
               A
             </div>
           </div>

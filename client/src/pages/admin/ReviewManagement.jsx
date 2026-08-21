@@ -69,10 +69,10 @@ const ReviewManagement = () => {
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
         <div>
-          <h2 style={{ fontFamily: 'Cinzel, serif', fontSize: '24px', color: '#d4af37', margin: '0 0 6px 0' }}>
+          <h2 style={{ fontFamily: 'Cinzel, serif', fontSize: '24px', color: '#00D2B4', margin: '0 0 6px 0' }}>
             Customer Reviews Management
           </h2>
-          <p style={{ color: '#a09585', fontSize: '14px', margin: 0 }}>
+          <p style={{ color: '#94A8B3', fontSize: '14px', margin: 0 }}>
             Add, update, or remove guest testimonials and rating scores shown on the homepage.
           </p>
         </div>
@@ -81,7 +81,7 @@ const ReviewManagement = () => {
           onClick={() => handleOpenModal()}
           style={{
             padding: '12px 20px',
-            background: 'linear-gradient(135deg, #d4af37 0%, #aa820a 100%)',
+            background: 'linear-gradient(135deg, #00D2B4 0%, #00B49B 100%)',
             color: '#000',
             fontWeight: '600',
             fontSize: '14px',
@@ -91,7 +91,7 @@ const ReviewManagement = () => {
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            boxShadow: '0 4px 15px rgba(212, 175, 55, 0.2)'
+            boxShadow: '0 4px 15px rgba(0, 210, 180, 0.2)'
           }}
         >
           <Plus size={18} /> Add Review
@@ -107,7 +107,7 @@ const ReviewManagement = () => {
         {reviews.map((rev) => (
           <div key={rev.id} style={{
             background: 'rgba(22, 18, 15, 0.8)',
-            border: '1px solid rgba(212, 175, 55, 0.15)',
+            border: '1px solid rgba(0, 210, 180, 0.15)',
             borderRadius: '12px',
             padding: '24px',
             display: 'flex',
@@ -120,14 +120,14 @@ const ReviewManagement = () => {
                 <img
                   src={rev.avatar}
                   alt={rev.name}
-                  style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', border: '1px solid rgba(212, 175, 55, 0.3)' }}
+                  style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', border: '1px solid rgba(0, 210, 180, 0.3)' }}
                   onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300'; }}
                 />
                 <div>
                   <h4 style={{ color: '#fff', fontSize: '16px', margin: '0 0 2px 0', fontWeight: '600' }}>
                     {rev.name}
                   </h4>
-                  <span style={{ fontSize: '12px', color: '#a09585' }}>{rev.role}</span>
+                  <span style={{ fontSize: '12px', color: '#94A8B3' }}>{rev.role}</span>
                 </div>
               </div>
 
@@ -138,7 +138,7 @@ const ReviewManagement = () => {
                 ))}
               </div>
 
-              <p style={{ color: '#e2d5c3', fontSize: '13px', lineHeight: '1.6', fontStyle: 'italic', margin: 0, position: 'relative', paddingLeft: '16px', borderLeft: '2px solid rgba(212, 175, 55, 0.3)' }}>
+              <p style={{ color: '#e2d5c3', fontSize: '13px', lineHeight: '1.6', fontStyle: 'italic', margin: 0, position: 'relative', paddingLeft: '16px', borderLeft: '2px solid rgba(0, 210, 180, 0.3)' }}>
                 "{rev.review}"
               </p>
             </div>
@@ -146,7 +146,7 @@ const ReviewManagement = () => {
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
               <button
                 onClick={() => handleOpenModal(rev)}
-                style={{ padding: '6px 12px', borderRadius: '6px', background: 'rgba(212, 175, 55, 0.15)', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#d4af37', cursor: 'pointer', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px' }}
+                style={{ padding: '6px 12px', borderRadius: '6px', background: 'rgba(0, 210, 180, 0.15)', border: '1px solid rgba(0, 210, 180, 0.3)', color: '#00D2B4', cursor: 'pointer', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px' }}
               >
                 <Edit2 size={14} /> Edit
               </button>
@@ -173,13 +173,13 @@ const ReviewManagement = () => {
         }}>
           <div style={{
             background: '#16120f',
-            border: '1px solid rgba(212, 175, 55, 0.3)',
+            border: '1px solid rgba(0, 210, 180, 0.3)',
             borderRadius: '16px',
             width: '100%', maxWidth: '500px',
             padding: '28px', boxShadow: '0 20px 50px rgba(0, 0, 0, 0.9)'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-              <h3 style={{ fontFamily: 'Cinzel, serif', fontSize: '20px', color: '#d4af37', margin: 0 }}>
+              <h3 style={{ fontFamily: 'Cinzel, serif', fontSize: '20px', color: '#00D2B4', margin: 0 }}>
                 {editingReview ? 'Edit Review' : 'Add New Review'}
               </h3>
               <button onClick={() => setIsModalOpen(false)} style={{ background: 'none', border: 'none', color: '#888', cursor: 'pointer' }}>
@@ -189,29 +189,29 @@ const ReviewManagement = () => {
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '12px', color: '#c5b59b', marginBottom: '6px' }}>Customer Name *</label>
+                <label style={{ display: 'block', fontSize: '12px', color: '#94A8B3', marginBottom: '6px' }}>Customer Name *</label>
                 <input
                   type="text" required value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  style={{ width: '100%', padding: '10px', background: 'rgba(30,26,22,0.8)', border: '1px solid rgba(212,175,55,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
+                  style={{ width: '100%', padding: '10px', background: 'rgba(17, 22, 27,0.8)', border: '1px solid rgba(0, 210, 180,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
                 />
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '12px', color: '#c5b59b', marginBottom: '6px' }}>Designation/Role</label>
+                  <label style={{ display: 'block', fontSize: '12px', color: '#94A8B3', marginBottom: '6px' }}>Designation/Role</label>
                   <input
                     type="text" value={formData.role}
                     onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                    style={{ width: '100%', padding: '10px', background: 'rgba(30,26,22,0.8)', border: '1px solid rgba(212,175,55,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
+                    style={{ width: '100%', padding: '10px', background: 'rgba(17, 22, 27,0.8)', border: '1px solid rgba(0, 210, 180,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '12px', color: '#c5b59b', marginBottom: '6px' }}>Star Rating (1 - 5) *</label>
+                  <label style={{ display: 'block', fontSize: '12px', color: '#94A8B3', marginBottom: '6px' }}>Star Rating (1 - 5) *</label>
                   <select
                     value={formData.rating}
                     onChange={(e) => setFormData({ ...formData, rating: Number(e.target.value) })}
-                    style={{ width: '100%', padding: '10px', background: '#1e1a16', border: '1px solid rgba(212,175,55,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
+                    style={{ width: '100%', padding: '10px', background: '#1e1a16', border: '1px solid rgba(0, 210, 180,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
                   >
                     <option value={5}>5 Stars ★★★★★</option>
                     <option value={4}>4 Stars ★★★★</option>
@@ -223,26 +223,26 @@ const ReviewManagement = () => {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '12px', color: '#c5b59b', marginBottom: '6px' }}>Customer Photo URL</label>
+                <label style={{ display: 'block', fontSize: '12px', color: '#94A8B3', marginBottom: '6px' }}>Customer Photo URL</label>
                 <input
                   type="text" value={formData.avatar}
                   onChange={(e) => setFormData({ ...formData, avatar: e.target.value })}
-                  style={{ width: '100%', padding: '10px', background: 'rgba(30,26,22,0.8)', border: '1px solid rgba(212,175,55,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
+                  style={{ width: '100%', padding: '10px', background: 'rgba(17, 22, 27,0.8)', border: '1px solid rgba(0, 210, 180,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box' }}
                 />
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '12px', color: '#c5b59b', marginBottom: '6px' }}>Review Text *</label>
+                <label style={{ display: 'block', fontSize: '12px', color: '#94A8B3', marginBottom: '6px' }}>Review Text *</label>
                 <textarea
                   rows={4} required value={formData.review}
                   onChange={(e) => setFormData({ ...formData, review: e.target.value })}
-                  style={{ width: '100%', padding: '10px', background: 'rgba(30,26,22,0.8)', border: '1px solid rgba(212,175,55,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box', fontFamily: 'inherit' }}
+                  style={{ width: '100%', padding: '10px', background: 'rgba(17, 22, 27,0.8)', border: '1px solid rgba(0, 210, 180,0.25)', borderRadius: '6px', color: '#fff', boxSizing: 'border-box', fontFamily: 'inherit' }}
                 />
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '12px' }}>
                 <button type="button" onClick={() => setIsModalOpen(false)} style={{ padding: '10px 18px', background: 'transparent', border: '1px solid #555', color: '#ccc', borderRadius: '6px', cursor: 'pointer' }}>Cancel</button>
-                <button type="submit" style={{ padding: '10px 22px', background: '#d4af37', color: '#000', fontWeight: '600', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>Save Review</button>
+                <button type="submit" style={{ padding: '10px 22px', background: '#00D2B4', color: '#000', fontWeight: '600', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>Save Review</button>
               </div>
             </form>
           </div>
