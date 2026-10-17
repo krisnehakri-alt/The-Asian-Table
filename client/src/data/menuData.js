@@ -1,8 +1,13 @@
 // Static Menu Dataset for THE ASIAN TABLE - Milestone 2
 
 import crispyHoneyChilliPotato from '../assets/crispy_honey_chilli_potato.png';
+import vegHakkaNoodles from '../assets/veg_hakka_noodles.png';
+import chickenHakkaNoodles from '../assets/chicken_hakka_noodles.png';
 import eggHakkaNoodles from '../assets/egg_hakka_noodles.png';
+import garlicNoodles from '../assets/garlic_noodles.png';
+import burntGarlicNoodles from '../assets/burnt_garlic_noodles.png';
 import schezwanNoodles from '../assets/schezwan_noodles.png';
+import singaporeNoodles from '../assets/singapore_noodles.png';
 import chilliGarlicNoodles from '../assets/chilli_garlic_noodles.png';
 
 export const menuCategoriesData = [
@@ -54,7 +59,7 @@ export const menuItemsData = [
     isPopular: true,
     isChefRecommended: false,
     description: 'Thin wheat noodles wok-tossed with julienned bell peppers, cabbage, carrots, and spring onion with light soy.',
-    image: 'https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&q=80&w=800'
+    image: vegHakkaNoodles
   },
   {
     id: 'chicken-hakka-noodles',
@@ -66,7 +71,7 @@ export const menuItemsData = [
     isPopular: true,
     isChefRecommended: false,
     description: 'Classic wok-fried noodles tossed with succulent chicken strips, fresh crunchy vegetables, and aromatic spices.',
-    image: 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=800'
+    image: chickenHakkaNoodles
   },
   {
     id: 'egg-hakka-noodles',
@@ -90,7 +95,7 @@ export const menuItemsData = [
     isPopular: false,
     isChefRecommended: false,
     description: 'Silky egg noodles infused with slow-roasted garlic oil, butter, aged soy, and toasted sesame.',
-    image: 'https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&q=80&w=800'
+    image: garlicNoodles
   },
   {
     id: 'burnt-garlic-noodles',
@@ -102,7 +107,7 @@ export const menuItemsData = [
     isPopular: true,
     isChefRecommended: true,
     description: 'Smoky wok noodles infused with golden charred garlic bits, chili flakes, and scallion infusion.',
-    image: 'https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&q=80&w=800'
+    image: burntGarlicNoodles
   },
   {
     id: 'schezwan-noodles',
@@ -126,7 +131,7 @@ export const menuItemsData = [
     isPopular: false,
     isChefRecommended: true,
     description: 'Thin vermicelli rice noodles seasoned with aromatic yellow curry powder, tender chicken, shrimp, and bell peppers.',
-    image: 'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&q=80&w=800'
+    image: singaporeNoodles
   },
   {
     id: 'chilli-garlic-noodles',

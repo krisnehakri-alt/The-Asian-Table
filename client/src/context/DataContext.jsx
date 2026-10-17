@@ -55,7 +55,16 @@ export const DataProvider = ({ children }) => {
   // 1. Menu State
   const [menuItems, setMenuItems] = useState(() => {
     const local = localStorage.getItem(STORAGE_KEYS.MENU_ITEMS);
-    return local ? JSON.parse(local) : initialMenuItems;
+    if (!local) return initialMenuItems;
+    try {
+      const parsed = JSON.parse(local);
+      return parsed.map((item) => {
+        const initial = initialMenuItems.find((i) => i.id === item.id);
+        return initial ? { ...item, image: initial.image } : item;
+      });
+    } catch {
+      return initialMenuItems;
+    }
   });
 
   // 2. Gallery State
