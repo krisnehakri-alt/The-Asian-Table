@@ -9,6 +9,14 @@ import burntGarlicNoodles from '../assets/burnt_garlic_noodles.png';
 import schezwanNoodles from '../assets/schezwan_noodles.png';
 import singaporeNoodles from '../assets/singapore_noodles.png';
 import chilliGarlicNoodles from '../assets/chilli_garlic_noodles.png';
+import vegFriedRice from '../assets/veg_fried_rice.png';
+import chickenFriedRice from '../assets/chicken_fried_rice.png';
+import eggFriedRice from '../assets/egg_fried_rice.png';
+import paneerFriedRice from '../assets/paneer_fried_rice.png';
+import schezwanFriedRice from '../assets/schezwan_fried_rice.png';
+import burntGarlicFriedRice from '../assets/burnt_garlic_fried_rice.png';
+import tripleSchezwanRice from '../assets/triple_schezwan_rice.png';
+import mixedFriedRice from '../assets/mixed_fried_rice.png';
 
 export const menuCategoriesData = [
   {
@@ -25,7 +33,7 @@ export const menuCategoriesData = [
     icon: '🍚',
     iconName: 'UtensilsCrossed',
     description: 'Fragrant jasmine & aromatic basmati stir-fried at high heat.',
-    image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&q=80&w=800'
+    image: vegFriedRice
   },
   {
     id: 'dimsum-momos',
@@ -157,7 +165,7 @@ export const menuItemsData = [
     isPopular: true,
     isChefRecommended: false,
     description: 'Fragrant Jasmine long-grain rice stir-fried with diced bell peppers, sweet corn, carrots, and spring onions.',
-    image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&q=80&w=800'
+    image: vegFriedRice
   },
   {
     id: 'chicken-fried-rice',
@@ -169,7 +177,7 @@ export const menuItemsData = [
     isPopular: true,
     isChefRecommended: false,
     description: 'High-wok flame Jasmine rice tossed with tender marinated chicken cubes, scrambled egg, and scallions.',
-    image: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&q=80&w=800'
+    image: chickenFriedRice
   },
   {
     id: 'egg-fried-rice',
@@ -181,7 +189,7 @@ export const menuItemsData = [
     isPopular: false,
     isChefRecommended: false,
     description: 'Fluffy Jasmine rice tossed with golden egg ribbons, light premium soy sauce, and white pepper seasoning.',
-    image: 'https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&q=80&w=800'
+    image: eggFriedRice
   },
   {
     id: 'paneer-fried-rice',
@@ -193,7 +201,7 @@ export const menuItemsData = [
     isPopular: false,
     isChefRecommended: false,
     description: 'Succulent spiced cottage cheese cubes stir-fried with aromatic rice, sweet corn, and green onions.',
-    image: 'https://images.unsplash.com/photo-1645177628172-a94c1f96e6db?auto=format&fit=crop&q=80&w=800'
+    image: paneerFriedRice
   },
   {
     id: 'schezwan-fried-rice',
@@ -205,7 +213,7 @@ export const menuItemsData = [
     isPopular: true,
     isChefRecommended: false,
     description: 'Spicy rice stir-fried in vibrant red Sichuan chili oil with diced vegetables and crunchy spring onion.',
-    image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&q=80&w=800'
+    image: schezwanFriedRice
   },
   {
     id: 'burnt-garlic-fried-rice',
@@ -217,7 +225,7 @@ export const menuItemsData = [
     isPopular: true,
     isChefRecommended: true,
     description: 'Aromatic fried rice layered with toasted golden garlic crisps, celery, and light ginger soy.',
-    image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&q=80&w=800'
+    image: burntGarlicFriedRice
   },
   {
     id: 'triple-schezwan-rice',
@@ -229,7 +237,7 @@ export const menuItemsData = [
     isPopular: true,
     isChefRecommended: true,
     description: 'A decadent combination of Schezwan rice, crispy fried noodle nest, and wok vegetables served with hot spicy gravy.',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800'
+    image: tripleSchezwanRice
   },
   {
     id: 'mixed-fried-rice',
@@ -241,7 +249,7 @@ export const menuItemsData = [
     isPopular: false,
     isChefRecommended: true,
     description: 'Deluxe royal mix of succulent chicken, tender shrimp, egg, and fresh garden vegetables in rich chef soy.',
-    image: 'https://images.unsplash.com/photo-1551326844-4df70f78d0e9?auto=format&fit=crop&q=80&w=800'
+    image: mixedFriedRice
   },
 
   // CATEGORY 3: Dim Sum & Momos (8 dishes)

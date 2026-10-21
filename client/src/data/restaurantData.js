@@ -7,6 +7,7 @@ import foodDining from '../assets/food_dining.png';
 import foodIngredients from '../assets/food_ingredients.png';
 import foodFamily from '../assets/food_family.png';
 import logo from '../assets/logo.png';
+import vegFriedRice from '../assets/veg_fried_rice.png';
 
 export const images = {
   heroBg,
@@ -113,7 +114,7 @@ export const signatureDishesData = [
     price: '$22.00',
     tags: ['Aromatic', 'Heritage Recipe'],
     description: 'Fragrant Jasmine rice fried with farm-fresh vegetables, sesame oil, and light soy sauce.',
-    image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&q=80&w=800'
+    image: vegFriedRice
   },
   {
     id: 'dimsum-momos',

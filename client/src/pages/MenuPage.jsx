@@ -61,11 +61,11 @@ const MenuPage = () => {
     const normalizedQuery = query.replace(/chili/g, 'chilli').replace(/sichuan/g, 'schezwan');
 
     return menuItemsData.filter((item) => {
-      // If search query exists, match globally across all categories
-      const matchesCategory =
-        !query || activeCategoryFilter === 'all' || item.categoryId === activeCategoryFilter;
-
-      if (!matchesCategory) return false;
+      // When no search query is entered, filter by active category tab.
+      // When a search query is active, search globally across all categories.
+      if (!query && activeCategoryFilter !== 'all' && item.categoryId !== activeCategoryFilter) {
+        return false;
+      }
 
       if (!query) return true;
 

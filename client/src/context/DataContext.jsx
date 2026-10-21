@@ -102,6 +102,16 @@ export const DataProvider = ({ children }) => {
     return localStorage.getItem('tat_admin_auth') === 'true';
   });
 
+  // Clear legacy cache keys
+  useEffect(() => {
+    try {
+      localStorage.removeItem('tat_menu_items');
+      localStorage.removeItem('tat_menu_items_v2');
+    } catch {
+      // ignore
+    }
+  }, []);
+
   // LocalStorage Persist Handlers
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.MENU_ITEMS, JSON.stringify(menuItems));
