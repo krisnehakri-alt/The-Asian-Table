@@ -280,25 +280,6 @@ const Footer = () => {
           }}
         >
           <p>© 2026 THE ASIAN TABLE. All Rights Reserved.</p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <NavLink
-              to="/privacy"
-              style={{ color: '#94A8B3', textDecoration: 'none', transition: 'color 0.2s ease' }}
-              onMouseOver={(e) => e.target.style.color = 'var(--accent)'}
-              onMouseOut={(e) => e.target.style.color = '#94A8B3'}
-            >
-              Privacy Policy
-            </NavLink>
-            <span style={{ color: 'rgba(0, 210, 180, 0.3)' }}>•</span>
-            <NavLink
-              to="/terms"
-              style={{ color: '#94A8B3', textDecoration: 'none', transition: 'color 0.2s ease' }}
-              onMouseOver={(e) => e.target.style.color = 'var(--accent)'}
-              onMouseOut={(e) => e.target.style.color = '#94A8B3'}
-            >
-              Terms of Service
-            </NavLink>
-          </div>
           <p style={{ color: 'var(--accent-gold)', fontWeight: 500 }}>Good Food • Great Experience</p>
         </div>
       </div>
