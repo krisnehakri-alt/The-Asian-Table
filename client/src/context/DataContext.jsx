@@ -6,7 +6,7 @@ import { branchData as initialBranches, customerReviewsData as initialReviews } 
 const DataContext = createContext();
 
 const STORAGE_KEYS = {
-  MENU_ITEMS: 'tat_menu_items',
+  MENU_ITEMS: 'tat_menu_items_v3',
   GALLERY_IMAGES: 'tat_gallery_images',
   BRANCHES: 'tat_branches',
   REVIEWS: 'tat_reviews',
