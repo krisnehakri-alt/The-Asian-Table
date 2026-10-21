@@ -130,7 +130,7 @@ export const menuItemsData = [
     isVeg: false,
     isPopular: false,
     isChefRecommended: true,
-    description: 'Thin vermicelli rice noodles seasoned with aromatic yellow curry powder, tender chicken, shrimp, and bell peppers.',
+    description: 'Thin vermicelli noodles seasoned with aromatic yellow curry powder, tender chicken, shrimp, and bell peppers.',
     image: singaporeNoodles
   },
   {
@@ -181,7 +181,7 @@ export const menuItemsData = [
     isPopular: false,
     isChefRecommended: false,
     description: 'Fluffy Jasmine rice tossed with golden egg ribbons, light premium soy sauce, and white pepper seasoning.',
-    image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: 'paneer-fried-rice',
@@ -205,7 +205,7 @@ export const menuItemsData = [
     isPopular: true,
     isChefRecommended: false,
     description: 'Spicy rice stir-fried in vibrant red Sichuan chili oil with diced vegetables and crunchy spring onion.',
-    image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: 'burnt-garlic-fried-rice',
@@ -228,7 +228,7 @@ export const menuItemsData = [
     isVeg: true,
     isPopular: true,
     isChefRecommended: true,
-    description: 'A decadent combination of Schezwan rice, Hakka noodles, and crispy fried noodle nest served with hot spicy gravy.',
+    description: 'A decadent combination of Schezwan rice, crispy fried noodle nest, and wok vegetables served with hot spicy gravy.',
     image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800'
   },
   {
@@ -241,7 +241,7 @@ export const menuItemsData = [
     isPopular: false,
     isChefRecommended: true,
     description: 'Deluxe royal mix of succulent chicken, tender shrimp, egg, and fresh garden vegetables in rich chef soy.',
-    image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1551326844-4df70f78d0e9?auto=format&fit=crop&q=80&w=800'
   },
 
   // CATEGORY 3: Dim Sum & Momos (8 dishes)

@@ -77,6 +77,25 @@ const MenuPage = () => {
         return item.isVeg === false;
       }
 
+      // Exclusivity rules to prevent cross-category contamination:
+      // When searching for rice, never return noodle dishes
+      const isRiceQuery = (query === 'rice' || query.includes('rice')) && !query.includes('noodle');
+      if (isRiceQuery && item.categoryId === 'asian-noodles') {
+        return false;
+      }
+
+      // When searching for noodles, never return rice dishes
+      const isNoodleQuery = (query === 'noodle' || query === 'noodles' || query.includes('noodle')) && !query.includes('rice');
+      if (isNoodleQuery && item.categoryId === 'asian-rice') {
+        return false;
+      }
+
+      // When searching for momos or dim sum, only return dimsum-momos category
+      const isMomoQuery = (query === 'momo' || query === 'momos' || query === 'dimsum' || query === 'dim sum') && !query.includes('noodle') && !query.includes('rice');
+      if (isMomoQuery && item.categoryId !== 'dimsum-momos') {
+        return false;
+      }
+
       // Check name, category name, description
       const nameMatch = item.name.toLowerCase().includes(query) || item.name.toLowerCase().includes(normalizedQuery);
       const categoryMatch = item.category.toLowerCase().includes(query);
@@ -90,7 +109,7 @@ const MenuPage = () => {
 
       return nameMatch || categoryMatch || descMatch || specialMatch || popularMatch;
     });
-  }, [searchQuery, activeCategoryFilter]);
+  }, [searchQuery, activeCategoryFilter, menuItemsData]);
 
   // Map category icons dynamically
   const getCategoryIcon = (iconName) => {

@@ -60,7 +60,7 @@ export const DataProvider = ({ children }) => {
       const parsed = JSON.parse(local);
       return parsed.map((item) => {
         const initial = initialMenuItems.find((i) => i.id === item.id);
-        return initial ? { ...item, image: initial.image } : item;
+        return initial ? { ...item, ...initial, image: initial.image } : item;
       });
     } catch {
       return initialMenuItems;
